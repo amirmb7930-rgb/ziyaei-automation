@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آمپرکالا | فروشگاه تخصصی برق صنعتی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF0F3;
+    --panel:#10151C;
+    --panel-2:#1A212B;
+    --amber:#FFB800;
+    --amber-deep:#E29A00;
+    --danger:#D6293C;
+    --success:#1D7A46;
+    --ink:#161B22;
+    --ink-soft:#525A66;
+    --line:#DFE3E8;
+    --white:#FFFFFF;
+    --blueprint:#EBF1F7;
+    --font-d:'Vazirmatn',sans-serif;
+    --font-m:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-d);
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  ul{list-style:none;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- utility bar ---------- */
+  .utilitybar{background:#0B0F14;color:#9AA4B2;font-size:12.5px;}
+  .utilitybar .wrap{display:flex;justify-content:space-between;align-items:center;height:34px;}
+  .utilitybar .u-left span{margin-inline-end:16px;}
+  .utilitybar .u-left span b{color:var(--amber);font-family:var(--font-m);}
+  .utilitybar .u-right a{margin-inline-start:14px;color:#C7CDD6;}
+  .utilitybar .u-right a:hover{color:var(--amber);}
+
+  /* ---------- header ---------- */
+  header.main{background:var(--panel);position:sticky;top:0;z-index:50;border-bottom:3px solid var(--amber);}
+  .headerbar{display:flex;align-items:center;gap:28px;height:78px;}
+  .logo{display:flex;align-items:center;gap:9px;flex-shrink:0;}
+  .logo .mark{width:38px;height:38px;}
+  .logo .word{font-weight:800;font-size:21px;color:var(--white);}
+  .logo .word span{color:var(--amber);}
+  .searchbar{flex:1;display:flex;height:44px;border-radius:6px;overflow:hidden;background:var(--white);}
+  .searchbar select{background:#EEF0F3;color:var(--ink-soft);font-size:13px;padding:0 12px;border-inline-end:1px solid var(--line);font-family:inherit;}
+  .searchbar input{flex:1;border:none;padding:0 14px;font-size:14px;font-family:inherit;color:var(--ink);}
+  .searchbar input:focus{outline:none;}
+  .searchbar button{width:52px;background:var(--button,var(--amber));display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .searchbar button:hover{background:var(--amber-deep);}
+  .headeracts{display:flex;align-items:center;gap:22px;flex-shrink:0;}
+  .hact{display:flex;flex-direction:column;align-items:center;gap:3px;color:#C7CDD6;font-size:11.5px;position:relative;}
+  .hact:hover{color:var(--amber);}
+  .hact .badge{position:absolute;top:-6px;left:-10px;background:var(--danger);color:#fff;font-size:10px;font-family:var(--font-m);width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+
+  /* ---------- category strip ---------- */
+  .catstrip{background:var(--panel-2);border-bottom:1px solid #29323D;}
+  .catstrip .wrap{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;}
+  .catstrip .wrap::-webkit-scrollbar{display:none;}
+  .catchip{display:flex;align-items:center;gap:7px;padding:12px 14px;white-space:nowrap;color:#C7CDD6;font-size:13px;font-weight:500;border-inline-end:1px solid #262E38;flex-shrink:0;}
+  .catchip svg{width:17px;height:17px;stroke:#8A93A0;}
+  .catchip:hover{color:var(--amber);}
+  .catchip:hover svg{stroke:var(--amber);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:22px 0 0;}
+  .hero-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;}
+  .hero-main{background:linear-gradient(120deg,#0F1621 0%,#1C2735 60%,#233042 100%);border-radius:10px;padding:38px 40px;position:relative;overflow:hidden;min-height:300px;display:flex;flex-direction:column;justify-content:center;}
+  .hero-main::after{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:26px 26px;pointer-events:none;}
+  .hero-eyebrow{color:var(--amber);font-family:var(--font-m);font-size:12.5px;letter-spacing:.06em;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px #FFB80030;}
+  .hero-main h1{color:#fff;font-size:35px;font-weight:800;line-height:1.5;max-width:520px;position:relative;}
+  .hero-main p{color:#9FADC0;font-size:14.5px;margin-top:12px;max-width:440px;line-height:1.9;position:relative;}
+  .hero-cta{margin-top:22px;display:flex;gap:12px;position:relative;}
+  .btn-amber{background:var(--button,var(--amber));color:#161000;font-weight:700;font-size:14px;padding:12px 26px;border-radius:6px;}
+  .btn-amber:hover{background:#fff;}
+  .btn-ghost{border:1px solid #3C4A5C;color:#DCE3EC;font-size:14px;padding:12px 22px;border-radius:6px;}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber);}
+
+  .hero-side{display:flex;flex-direction:column;gap:16px;}
+  .side-card{border-radius:10px;padding:22px;flex:1;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+  .side-card.c1{background:#233042;}
+  .side-card.c2{background:linear-gradient(120deg,#3A2A0E,#4A3712);}
+  .side-card small{color:var(--amber);font-family:var(--font-m);font-size:11px;}
+  .side-card h3{color:#fff;font-size:17px;margin-top:8px;font-weight:700;}
+  .side-card span.arrow{position:absolute;left:20px;bottom:18px;color:#8A93A0;font-size:20px;}
+
+  /* ---------- breaker panel signature ---------- */
+  .breakerpanel{margin-top:16px;background:#0B0F14;border:1px solid #232B35;border-radius:10px;padding:16px 22px;display:flex;align-items:center;gap:0;overflow-x:auto;}
+  .bp-label{color:#68707C;font-size:12px;font-family:var(--font-m);flex-shrink:0;margin-inline-end:18px;white-space:nowrap;}
+  .breaker{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;padding:0 18px;border-inline-start:1px solid #1E2530;}
+  .breaker:first-of-type{border-inline-start:none;}
+  .switch{width:30px;height:46px;border-radius:4px;background:#1B222C;border:1px solid #2C3644;position:relative;display:flex;align-items:flex-end;padding:3px;transition:background .25s;}
+  .switch .toggle{width:100%;height:19px;border-radius:3px;background:#3B4553;transition:transform .25s cubic-bezier(.4,0,.2,1), background .25s;}
+  .switch .led{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:#3A4350;transition:background .25s, box-shadow .25s;}
+  .breaker.on .switch{background:#22160055;border-color:var(--amber-deep);}
+  .breaker.on .switch .toggle{transform:translateY(-21px);background:var(--amber);}
+  .breaker.on .switch .led{background:#5CFF7A;box-shadow:0 0 6px 2px #5CFF7A99;}
+  .breaker span.code{color:#7B8492;font-family:var(--font-m);font-size:10.5px;letter-spacing:.03em;}
+  .breaker.on span.code{color:var(--amber);}
+  .breaker span.name{color:#AAB2BE;font-size:11.5px;white-space:nowrap;}
+
+  /* ---------- section heading ---------- */
+  .section{padding:44px 0;}
+  .sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+  .sec-head .left{display:flex;align-items:center;gap:12px;}
+  .sec-head .bar{width:5px;height:24px;background:var(--amber);border-radius:2px;}
+  .sec-head h2{font-size:19px;font-weight:800;}
+  .sec-head p.sub{color:var(--ink-soft);font-size:12.5px;margin-top:2px;}
+  .sec-head .more{font-size:13px;color:var(--ink-soft);display:flex;align-items:center;gap:5px;}
+  .sec-head .more:hover{color:var(--amber-deep);}
+
+  /* ---------- flash deal ---------- */
+  .flash{background:var(--panel);border-radius:10px;padding:22px;}
+  .flash .sec-head h2{color:#fff;}
+  .flash .sec-head .sub-row{display:flex;align-items:center;gap:14px;}
+  .timer{display:flex;gap:5px;direction:ltr;}
+  .timer .box{background:#1E2530;border:1px solid #2C3644;color:var(--amber);font-family:var(--font-m);font-weight:700;font-size:15px;padding:5px 9px;border-radius:4px;min-width:34px;text-align:center;}
+  .timer .sep{color:#4A5361;font-weight:700;align-self:center;}
+  .row-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;}
+  .row-scroll::-webkit-scrollbar{height:6px;}
+  .row-scroll::-webkit-scrollbar-thumb{background:#3C4A5C;border-radius:3px;}
+
+  /* ---------- product card ---------- */
+  .pcard{background:var(--white);border-radius:8px;border:1px solid var(--line);flex:0 0 208px;overflow:hidden;transition:box-shadow .18s,transform .18s;position:relative;}
+  .pcard:hover{box-shadow:0 10px 24px -8px #0002;transform:translateY(-3px);}
+  .flash .pcard{flex:0 0 190px;}
+  .pcard .imgwrap{background:var(--blueprint);background-image:linear-gradient(#ffffff 1px,transparent 1px),linear-gradient(90deg,#ffffff 1px,transparent 1px);background-size:14px 14px;height:130px;display:flex;align-items:center;justify-content:center;position:relative;}
+  .pcard .imgwrap svg{width:58px;height:58px;stroke:#3C4A5C;}
+  .pcard .discount{position:absolute;top:8px;right:8px;background:var(--danger);color:#fff;font-family:var(--font-m);font-size:11px;font-weight:700;padding:3px 6px;border-radius:4px;}
+  .pcard .body{padding:11px 12px 13px;}
+  .pcard .brand{color:var(--ink-soft);font-size:10.5px;font-family:var(--font-m);text-transform:uppercase;}
+  .pcard .title{font-size:13px;font-weight:600;line-height:1.6;margin-top:4px;min-height:41px;}
+  .pcard .specs{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+  .pcard .specs span{background:#F1F3F5;color:var(--ink-soft);font-size:10px;font-family:var(--font-m);padding:2px 6px;border-radius:3px;}
+  .pcard .pricebox{display:flex;align-items:baseline;gap:6px;margin-top:10px;}
+  .pcard .old{color:#A7ADB6;font-size:11px;text-decoration:line-through;font-family:var(--font-m);}
+  .pcard .new{font-size:14.5px;font-weight:800;font-family:var(--font-m);}
+  .pcard .toman{font-size:10.5px;color:var(--ink-soft);}
+  .pcard .addbtn{margin-top:9px;width:100%;background:#F1F3F5;color:var(--ink);font-size:12px;font-weight:600;padding:8px 0;border-radius:5px;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s,color .15s;}
+  .pcard .addbtn:hover{background:var(--amber);color:#161000;}
+  .pcard .stock{font-size:10.5px;color:var(--success);margin-top:6px;display:flex;align-items:center;gap:5px;}
+  .pcard .stock i{width:6px;height:6px;border-radius:50%;background:var(--success);display:inline-block;}
+
+  /* ---------- category tile grid ---------- */
+  .tilegrid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+  .tile{background:var(--white);border:1px solid var(--line);border-radius:9px;padding:20px 12px;text-align:center;transition:border-color .15s,transform .15s;}
+  .tile:hover{border-color:var(--amber);transform:translateY(-2px);}
+  .tile svg{width:34px;height:34px;stroke:var(--panel);margin:0 auto 10px;}
+  .tile span{font-size:12.5px;font-weight:600;}
+
+  /* ---------- brand strip ---------- */
+  .brandstrip{background:var(--white);border:1px solid var(--line);border-radius:9px;padding:22px 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+  .brandstrip .b{font-family:var(--font-m);font-weight:700;font-size:15px;color:#3C4A5C;letter-spacing:.02em;opacity:.75;}
+  .brandstrip .b:hover{opacity:1;color:var(--panel);}
+
+  /* ---------- trust bar ---------- */
+  .trustbar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .trust{background:var(--white);border:1px solid var(--line);border-radius:9px;padding:18px 16px;display:flex;gap:12px;align-items:flex-start;}
+  .trust svg{width:26px;height:26px;stroke:var(--amber-deep);flex-shrink:0;}
+  .trust h4{font-size:13px;font-weight:700;}
+  .trust p{font-size:11.5px;color:var(--ink-soft);margin-top:3px;line-height:1.6;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--panel);color:#9AA4B2;margin-top:20px;}
+  .footer-top{background:linear-gradient(120deg,#1C2735,#233042);}
+  .footer-top .wrap{display:flex;justify-content:space-between;align-items:center;padding:26px 20px;flex-wrap:wrap;gap:14px;}
+  .footer-top h3{color:#fff;font-size:16px;}
+  .footer-top p{font-size:12.5px;color:#9FADC0;margin-top:4px;}
+  .nform{display:flex;height:42px;border-radius:6px;overflow:hidden;min-width:300px;}
+  .nform input{flex:1;border:none;padding:0 14px;font-family:inherit;font-size:13px;}
+  .nform input:focus{outline:none;}
+  .nform button{background:var(--amber);color:#161000;font-weight:700;font-size:13px;padding:0 20px;}
+  .footer-grid{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:20px;padding:38px 0;border-bottom:1px solid #232B35;}
+  .footer-grid h5{color:#fff;font-size:13.5px;margin-bottom:14px;}
+  .footer-grid ul li{margin-bottom:9px;font-size:12.5px;}
+  .footer-grid ul li:hover{color:var(--amber);}
+  .footer-grid .about p{font-size:12px;line-height:2;color:#8A93A0;margin-bottom:14px;}
+  .footer-grid .about .badges{display:flex;gap:8px;}
+  .footer-grid .about .badges div{width:56px;height:56px;background:#1A212B;border:1px solid #29323D;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#68707C;text-align:center;}
+  .footer-bottom{padding:16px 0;font-size:11.5px;color:#68707C;text-align:center;}
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .tilegrid{grid-template-columns:repeat(3,1fr);}
+    .trustbar{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:640px){
+    .headerbar{flex-wrap:wrap;height:auto;padding:12px 0;gap:10px;}
+    .searchbar{order:3;width:100%;}
+    .tilegrid{grid-template-columns:repeat(2,1fr);}
+    .trustbar{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero-main h1{font-size:26px;}
+  }
+</style>
+
+<style>
+/* ===== AmperKala order-request + admin v1 ===== */
+.order-fab{position:fixed;left:20px;bottom:20px;z-index:80;background:var(--amber);color:#161000;padding:13px 18px;border-radius:8px;font-weight:800;box-shadow:0 12px 30px #0003;display:none}
+.admin-open{display:inline-flex;align-items:center;gap:6px}
+.modal-backdrop{position:fixed;inset:0;background:#081018aa;z-index:100;display:none;align-items:center;justify-content:center;padding:18px}
+.modal-backdrop.show{display:flex}
+.modal{width:min(760px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:12px;box-shadow:0 25px 80px #0005}
+.modal.dark{background:#10151c;color:#fff}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+.modal-head h3{font-size:17px}
+.modal-close{font-size:22px;color:#7b8492}
+.modal-body{padding:20px}
+.order-items{display:grid;gap:10px}
+.order-item{display:grid;grid-template-columns:1fr 90px 90px 34px;gap:8px;align-items:center;border:1px solid var(--line);padding:10px;border-radius:8px}
+.order-item input{width:100%;padding:8px;border:1px solid var(--line);border-radius:6px}
+.qty{display:flex;align-items:center;gap:5px}
+.qty button{background:#eef0f3;border-radius:5px;width:26px;height:28px}
+.btn-wide{width:100%;padding:11px;border-radius:7px;font-weight:800}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid label{display:grid;gap:5px;font-size:12px;color:var(--ink-soft)}
+.form-grid input,.form-grid textarea,.form-grid select{padding:10px;border:1px solid var(--line);border-radius:7px;font-family:inherit}
+.form-grid textarea{min-height:80px;resize:vertical}
+.admin-panel{width:min(1100px,100%);max-height:92vh;overflow:auto;background:#f6f7f9;border-radius:12px}
+.admin-top{background:var(--panel);color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+.admin-grid{display:grid;grid-template-columns:220px 1fr;min-height:620px}
+.admin-nav{background:#151b23;color:#aab2be;padding:12px}
+.admin-nav button{width:100%;text-align:right;padding:11px;border-radius:6px;margin-bottom:4px}
+.admin-nav button.active,.admin-nav button:hover{background:#232d39;color:var(--amber)}
+.admin-content{padding:20px}
+.admin-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.admin-card{background:#fff;border:1px solid var(--line);border-radius:9px;padding:15px}
+.admin-card b{font-size:22px;font-family:var(--font-m)}
+.admin-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.admin-table th,.admin-table td{padding:9px;border-bottom:1px solid #edf0f3;text-align:right;font-size:12px;vertical-align:middle}
+.admin-table input,.admin-table select{width:100%;padding:7px;border:1px solid var(--line);border-radius:5px;font-family:inherit}
+.status{padding:3px 7px;border-radius:12px;font-size:10px}
+.status.ok{background:#e7f5ed;color:#1d7a46}.status.no{background:#fdebed;color:#b51f31}.status.wait{background:#fff4d6;color:#8a6100}
+.admin-actions{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.small-btn{padding:8px 11px;border-radius:6px;background:#e9edf1;font-size:11px;font-weight:700}
+.small-btn.primary{background:var(--amber);color:#161000}
+.notice{padding:10px;border-radius:7px;background:#fff7dd;margin-bottom:12px;font-size:12px}
+@media(max-width:720px){
+ .admin-grid{grid-template-columns:1fr}.admin-nav{display:flex;overflow:auto}.admin-nav button{white-space:nowrap;width:auto;margin-left:5px}
+ .admin-cards{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.order-item{grid-template-columns:1fr 75px 80px 30px}
+}
+</style>
+
+
+<style id="ak-smart-search-style">
+#akSearchPanel{position:absolute;top:115px;right:50%;transform:translateX(50%);width:min(760px,calc(100% - 40px));background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:0 0 10px 10px;box-shadow:0 18px 45px #0004;display:none;overflow:hidden;z-index:10000}
+#akSearchPanel.show{display:block}
+.ak-search-head{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:#f6f7f9;border-bottom:1px solid var(--line);font-size:12px}
+.ak-search-head b{font-size:13px}.ak-search-head span{color:var(--ink-soft)}
+.ak-search-item{width:100%;display:flex;align-items:center;gap:11px;text-align:right;padding:11px 14px;background:#fff;border:0;border-bottom:1px solid #edf0f3;cursor:pointer}
+.ak-search-item:hover{background:#fff8df}
+.ak-search-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:var(--blueprint);border-radius:6px;flex:none}
+.ak-search-icon svg{width:25px;height:25px;stroke:#3C4A5C}
+.ak-search-text{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.ak-search-text b{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ak-search-text small{font-size:10.5px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ak-search-item strong{font-size:11px;white-space:nowrap;font-family:var(--font-m)}
+.ak-search-empty{padding:18px;text-align:center;color:var(--ink-soft);font-size:12px;line-height:1.8}
+header.main{position:relative}
+@media(max-width:640px){#akSearchPanel{top:130px;width:calc(100% - 20px)}.ak-search-item strong{display:none}}
+</style>
+</head>
+<body>
+
+<!-- SVG ICON DEFS -->
+<svg width="0" height="0" style="position:absolute">
+<defs>
+<symbol id="ic-cable" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="2" fill="currentColor"/></symbol>
+<symbol id="ic-breaker" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="6" width="20" height="36" rx="3"/><rect x="19" y="12" width="10" height="14" rx="1"/><line x1="24" y1="30" x2="24" y2="36"/></symbol>
+<symbol id="ic-meter" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30a16 16 0 0132 0"/><line x1="24" y1="30" x2="31" y2="21"/><circle cx="24" cy="30" r="1.6" fill="currentColor"/><line x1="8" y1="30" x2="40" y2="30"/></symbol>
+<symbol id="ic-light" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 27a7 7 0 1114 0c0 4-3 5-3 9h-8c0-4-3-5-3-9z"/><line x1="20" y1="40" x2="28" y2="40"/><line x1="24" y1="6" x2="24" y2="10"/></symbol>
+<symbol id="ic-safety" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l16 6v10c0 10-7 17-16 20-9-3-16-10-16-20V12l16-6z"/><path d="M18 24l4 4 8-8"/></symbol>
+<symbol id="ic-motor" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="16" width="26" height="16" rx="2"/><circle cx="19" cy="24" r="4"/><line x1="32" y1="22" x2="40" y2="22"/><line x1="32" y1="26" x2="40" y2="26"/></symbol>
+<symbol id="ic-panel" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="6" width="28" height="36" rx="2"/><line x1="16" y1="14" x2="16" y2="20"/><line x1="24" y1="14" x2="24" y2="20"/><line x1="32" y1="14" x2="32" y2="20"/><line x1="14" y1="28" x2="34" y2="28"/><line x1="14" y1="34" x2="34" y2="34"/></symbol>
+<symbol id="ic-auto" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="6"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4 4M33 33l4 4M37 11l-4 4M15 33l-4 4"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="#161000" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></symbol>
+<symbol id="ic-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2 3h2l2.4 12.2a2 2 0 002 1.8h8.6a2 2 0 002-1.7L21 8H6"/></symbol>
+<symbol id="ic-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c1.5-4 5-6 7.5-6s6 2 7.5 6"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.7-9.8-9.5C.6 6.8 2.7 3.5 6.3 3.5c2 0 3.6 1.2 4.7 2.9 1.1-1.7 2.7-2.9 4.7-2.9 3.6 0 5.7 3.3 4.1 7-2.3 4.8-9.8 9.5-9.8 9.5z"/></symbol>
+<symbol id="ic-truck" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="16" width="24" height="16" rx="1"/><path d="M28 22h9l6 6v4h-6"/><circle cx="14" cy="35" r="3.2"/><circle cx="34" cy="35" r="3.2"/></symbol>
+<symbol id="ic-shield" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5l16 6v11c0 11-7 18-16 21-9-3-16-10-16-21V11l16-6z"/></symbol>
+<symbol id="ic-headset" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 26v-2a16 16 0 0132 0v2"/><rect x="6" y="24" width="8" height="12" rx="2"/><rect x="34" y="24" width="8" height="12" rx="2"/><path d="M42 36v2a4 4 0 01-4 4h-6"/></symbol>
+<symbol id="ic-return" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22a14 14 0 1114 14"/><path d="M4 18l6 4 4-6"/></symbol>
+</defs>
+</svg>
+
+<!-- UTILITY BAR -->
+<div class="utilitybar">
+  <div class="wrap">
+    <div class="u-left">
+      <span>ارسال به سراسر کشور</span>
+      <span>پشتیبانی فنی: <b>021-9128XXXX</b></span>
+    </div>
+    <div class="u-right">
+      <a href="#">وضعیت سفارش</a>
+      <a href="#">فروش عمده / پروژه</a>
+      <a href="#">نمایندگی‌ها</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="main">
+  <div class="wrap headerbar">
+    <a class="logo" href="#top">
+      <svg class="mark" viewBox="0 0 48 48" fill="none" stroke="#FFB800" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="32" height="32" rx="5"/><path d="M26 15l-9 11h7l-2 9 10-12h-7z" fill="#FFB800" stroke="none"/></svg>
+      <div class="word">آمپر<span>کالا</span></div>
+    </a>
+    <form class="searchbar">
+      <select><option>همه دسته‌ها</option><option>کابل و سیم</option><option>تابلو و کلید</option><option>ابزار اندازه‌گیری</option><option>روشنایی صنعتی</option><option>ایمنی HSE</option></select>
+      <input type="text" placeholder="جستجوی کالا، برند یا کد فنی… مثلاً: کلید مینیاتوری ۱۶ آمپر">
+      <button type="submit"><svg width="19" height="19"><use href="#ic-search"/></svg></button>
+    </form>
+    <div class="headeracts">
+      <a class="hact" href="#"><svg width="21" height="21"><use href="#ic-user"/></svg>ورود / ثبت‌نام</a>
+      <a class="hact" href="#"><svg width="21" height="21"><use href="#ic-heart"/></svg>علاقه‌مندی</a>
+      <button class="hact" type="button" id="cartAct"><svg width="21" height="21"><use href="#ic-cart"/></svg>درخواست سفارش<span class="badge" id="cartBadge">0</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- CATEGORY STRIP -->
+<nav class="catstrip">
+  <div class="wrap">
+    <a class="catchip" href="#cat-cable"><svg><use href="#ic-cable"/></svg>کابل و سیم</a>
+    <a class="catchip" href="#cat-panel"><svg><use href="#ic-panel"/></svg>تابلو برق</a>
+    <a class="catchip" href="#cat-breaker"><svg><use href="#ic-breaker"/></svg>کلید و کنتاکتور</a>
+    <a class="catchip" href="#cat-meter"><svg><use href="#ic-meter"/></svg>ابزار اندازه‌گیری</a>
+    <a class="catchip" href="#cat-light"><svg><use href="#ic-light"/></svg>روشنایی صنعتی</a>
+    <a class="catchip" href="#cat-motor"><svg><use href="#ic-motor"/></svg>موتور و گیربکس</a>
+    <a class="catchip" href="#cat-auto"><svg><use href="#ic-auto"/></svg>اتوماسیون صنعتی</a>
+    <a class="catchip" href="#cat-safety"><svg><use href="#ic-safety"/></svg>ایمنی و HSE</a>
+  </div>
+</nav>
+
+<main id="top">
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-main">
+        <div class="hero-eyebrow"><span class="dot"></span>مناسبتی — تجهیز پروژه‌های صنعتی پیش از فصل تولید</div>
+        <h1>هر آنچه برای تابلو، خط تولید و برق‌کشی صنعتی نیاز دارید</h1>
+        <p>بیش از ۱۲ هزار قلم کالای اورجینال با گارانتی اصالت، از کابل و کلید مینیاتوری تا تابلوهای فشار متوسط؛ با مشاوره فنی رایگان برای انتخاب صحیح.</p>
+        <div class="hero-cta">
+          <a class="btn-amber" href="#flash">مشاهده پیشنهادهای امروز</a>
+          <a class="btn-ghost" href="#cat-panel">درخواست قیمت پروژه‌ای</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="side-card c1">
+          <small>برند منتخب هفته</small>
+          <h3>کلیدهای مینیاتوری اشنایدر ۲۰٪ تخفیف</h3>
+          <span class="arrow">←</span>
+        </div>
+        <div class="side-card c2">
+          <small>ویژه پیمانکاران</small>
+          <h3>تسویه اقساطی خرید کابل بالای ۵۰۰ متر</h3>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIGNATURE: interactive breaker panel navigation -->
+    <div class="breakerpanel" id="bpanel">
+      <span class="bp-label">تابلوی دسترسی سریع ⏵</span>
+      <div class="breaker on" data-target="#cat-cable"><div class="switch"><span class="led"></span><div class="toggle"></div></div><span class="code">CB-01</span><span class="name">کابل و سیم</span></div>
+      <div class="breaker on" data-target="#cat-panel"><div class="switch"><span class="led"></span><div class="toggle"></div></div><span class="code">CB-02</span><span class="name">تابلو برق</span></div>
+      <div class="breaker" data-target="#cat-breaker"><div class="switch"><span class="led"></span><div class="toggle"></div></div><span class="code">CB-03</span><span class="name">کلید و کنتاکتور</span></div>
+      <div class="breaker" data-target="#cat-meter"><div class="switch"><span class="led"></span><div class="toggle"></div></div><span class="code">CB-04</span><span class="name">اندازه‌گیری</span></div>
+      <div class="breaker on" data-target="#cat-light"><div class="switch"><span class="led"></span><div class="toggle"></div></div><span class="code">CB-05</span><span class="name">روشنایی</span></div>
+      <div class="breaker" data-target="#cat-safety"><div class="switch"><span class="led"></span><div class="toggle"></div></div><span class="code">CB-06</span><span class="name">ایمنی HSE</span></div>
+    </div>
+  </section>
+
+  <!-- FLASH DEAL -->
+  <section class="section" id="flash">
+    <div class="flash">
+      <div class="sec-head">
+        <div class="left">
+          <span class="bar"></span>
+          <div>
+            <h2>پیشنهاد شگفت‌انگیز صنعتی</h2>
+            <p class="sub" style="color:#8A93A0">تا پایان موجودی، فقط امروز</p>
+          </div>
+        </div>
+        <div class="sub-row">
+          <div class="timer" id="timer">
+            <div class="box" id="t-h">08</div><span class="sep">:</span>
+            <div class="box" id="t-m">42</div><span class="sep">:</span>
+            <div class="box" id="t-s">17</div>
+          </div>
+        </div>
+      </div>
+      <div class="row-scroll" id="flashRow"></div>
+    </div>
+  </section>
+
+  <!-- CATEGORY TILES -->
+  <section class="section">
+    <div class="sec-head">
+      <div class="left"><span class="bar"></span><h2>دسته‌بندی محصولات</h2></div>
+    </div>
+    <div class="tilegrid">
+      <a class="tile" href="#cat-cable"><svg><use href="#ic-cable"/></svg><span>کابل و سیم</span></a>
+      <a class="tile" href="#cat-panel"><svg><use href="#ic-panel"/></svg><span>تابلو برق</span></a>
+      <a class="tile" href="#cat-breaker"><svg><use href="#ic-breaker"/></svg><span>کلید و کنتاکتور</span></a>
+      <a class="tile" href="#cat-meter"><svg><use href="#ic-meter"/></svg><span>ابزار اندازه‌گیری</span></a>
+      <a class="tile" href="#cat-light"><svg><use href="#ic-light"/></svg><span>روشنایی صنعتی</span></a>
+      <a class="tile" href="#cat-motor"><svg><use href="#ic-motor"/></svg><span>موتور و گیربکس</span></a>
+      <a class="tile" href="#cat-auto"><svg><use href="#ic-auto"/></svg><span>اتوماسیون</span></a>
+      <a class="tile" href="#cat-safety"><svg><use href="#ic-safety"/></svg><span>ایمنی و HSE</span></a>
+      <a class="tile" href="#" style="grid-column:span 2"><svg><use href="#ic-panel"/></svg><span>ملزومات تابلوسازی</span></a>
+      <a class="tile" href="#" style="grid-column:span 2"><svg><use href="#ic-cable"/></svg><span>ترمینال و اتصالات</span></a>
+    </div>
+  </section>
+
+  <!-- CABLE -->
+  <section class="section" id="cat-cable">
+    <div class="sec-head">
+      <div class="left"><span class="bar"></span><div><h2>کابل و سیم صنعتی</h2><p class="sub">افشان، مفتولی، زوجی و قدرت</p></div></div>
+      <a class="more" href="#">مشاهده همه ←</a>
+    </div>
+    <div class="row-scroll" id="row-cable"></div>
+  </section>
+
+  <!-- PANEL/BREAKER -->
+  <section class="section" id="cat-panel">
+    <div class="sec-head">
+      <div class="left"><span class="bar"></span><div><h2>تابلو، کلید و کنتاکتور</h2><p class="sub">فشار ضعیف و متوسط، برندهای معتبر اروپایی</p></div></div>
+      <a class="more" href="#">مشاهده همه ←</a>
+    </div>
+    <div class="row-scroll" id="row-panel"></div>
+  </section>
+  <div id="cat-breaker"></div>
+
+  <!-- MEASUREMENT -->
+  <section class="section" id="cat-meter">
+    <div class="sec-head">
+      <div class="left"><span class="bar"></span><div><h2>ابزار اندازه‌گیری</h2><p class="sub">مولتی‌متر، کلمپ‌متر، ترموویژن</p></div></div>
+      <a class="more" href="#">مشاهده همه ←</a>
+    </div>
+    <div class="row-scroll" id="row-meter"></div>
+  </section>
+
+  <!-- LIGHTING -->
+  <section class="section" id="cat-light">
+    <div class="sec-head">
+      <div class="left"><span class="bar"></span><div><h2>روشنایی صنعتی</h2><p class="sub">هایبی، پروژکتور و چراغ ضدانفجار</p></div></div>
+      <a class="more" href="#">مشاهده همه ←</a>
+    </div>
+    <div class="row-scroll" id="row-light"></div>
+  </section>
+  <div id="cat-motor"></div>
+  <div id="cat-auto"></div>
+
+  <!-- SAFETY -->
+  <section class="section" id="cat-safety">
+    <div class="sec-head">
+      <div class="left"><span class="bar"></span><div><h2>ایمنی و HSE</h2><p class="sub">تجهیزات حفاظت فردی برای کار با برق</p></div></div>
+      <a class="more" href="#">مشاهده همه ←</a>
+    </div>
+    <div class="row-scroll" id="row-safety"></div>
+  </section>
+
+  <!-- BRANDS -->
+  <section class="section" style="padding-top:6px">
+    <div class="brandstrip">
+      <span class="b">SCHNEIDER ELECTRIC</span>
+      <span class="b">ABB</span>
+      <span class="b">SIEMENS</span>
+      <span class="b">LEGRAND</span>
+      <span class="b">LS ELECTRIC</span>
+      <span class="b">HYUNDAI</span>
+      <span class="b">CHINT</span>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="section" style="padding-top:0">
+    <div class="trustbar">
+      <div class="trust"><svg><use href="#ic-shield"/></svg><div><h4>ضمانت اصالت کالا</h4><p>تمام اقلام دارای کد فنی و گارانتی رسمی نمایندگی</p></div></div>
+      <div class="trust"><svg><use href="#ic-truck"/></svg><div><h4>ارسال به کارگاه و کارخانه</h4><p>تحویل سریع در تهران و ارسال باربری به سراسر کشور</p></div></div>
+      <div class="trust"><svg><use href="#ic-headset"/></svg><div><h4>مشاوره فنی مهندسی</h4><p>راهنمایی انتخاب تجهیز متناسب با بار و استاندارد</p></div></div>
+      <div class="trust"><svg><use href="#ic-return"/></svg><div><h4>۷ روز مهلت تست و برگشت</h4><p>در صورت مغایرت فنی، بدون کسر هزینه مرجوعی</p></div></div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="wrap">
+      <div>
+        <h3>عضویت در خبرنامه فنی آمپرکالا</h3>
+        <p>تخفیف‌های ویژه و استانداردهای جدید صنعت برق را زودتر از همه دریافت کنید</p>
+      </div>
+      <form class="nform"><input type="email" placeholder="ایمیل شما"><button type="submit">عضویت</button></form>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="about">
+        <h5>آمپرکالا</h5>
+        <p>فروشگاه تخصصی تجهیزات برق صنعتی؛ تامین‌کننده کابل، تابلو، ابزار اندازه‌گیری و ملزومات ایمنی برای کارگاه‌ها، کارخانجات و پیمانکاران برق در سراسر کشور.</p>
+        <div class="badges"><div>نماد<br>اعتماد</div><div>ضمانت<br>اصالت</div><div>ثبت<br>سفارش</div></div>
+      </div>
+      <div><h5>دسته‌بندی‌ها</h5><ul><li>کابل و سیم</li><li>تابلو برق</li><li>کلید و کنتاکتور</li><li>روشنایی صنعتی</li></ul></div>
+      <div><h5>خدمات</h5><ul><li>فروش پروژه‌ای</li><li>مشاوره فنی</li><li>نمایندگی فروش</li><li>خدمات پس از فروش</li></ul></div>
+      <div><h5>راهنما</h5><ul><li>روش خرید</li><li>شرایط ارسال</li><li>گارانتی و مرجوعی</li><li>سوالات متداول</li></ul></div>
+      <div><h5>ارتباط با ما</h5><ul><li>021-9128XXXX</li><li>info@amperkala.ir</li><li>تهران، بزرگراه صنعتی</li></ul></div>
+    </div>
+    <div class="footer-bottom">© ۱۴۰۴ آمپرکالا — کلیه حقوق محفوظ است. این یک طراحی نمونه است.</div>
+  </div>
+<div style="text-align:center;padding:10px"><button class="small-btn" onclick="AK.openLogin()">ورود مدیریت</button></div></footer>
+
+
+<!-- Customer order request -->
+<div class="modal-backdrop" id="orderModal">
+ <div class="modal"><div class="modal-head"><h3>ثبت درخواست سفارش</h3><button class="modal-close" onclick="AK.closeOrder()">×</button></div>
+ <div class="modal-body"><div id="orderItems"></div>
+ <div style="display:flex;justify-content:space-between;font-weight:800;margin:14px 0">جمع اولیه <span id="reqTotal">—</span></div>
+ <form onsubmit="AK.submitRequest(event)" class="form-grid">
+  <label>نام و نام خانوادگی<input name="name" required></label>
+  <label>شماره تماس<input name="phone" required type="tel"></label>
+  <label>ایمیل (اختیاری)<input name="email" type="email"></label>
+  <label style="grid-column:1/-1">توضیحات<textarea name="note" placeholder="مثلاً زمان تحویل، برند پیشنهادی یا توضیحات فنی"></textarea></label>
+  <button class="btn-wide" style="background:var(--amber);grid-column:1/-1">ارسال درخواست برای بررسی موجودی</button>
+ </form></div></div>
+</div>
+
+<!-- Admin login -->
+<div class="modal-backdrop" id="loginModal">
+ <div class="modal" style="max-width:420px"><div class="modal-head"><h3>ورود مدیریت</h3><button class="modal-close" onclick="document.getElementById('loginModal').classList.remove('show')">×</button></div>
+ <div class="modal-body"><div class="form-grid" style="grid-template-columns:1fr"><label>نام کاربری<input id="adminUser" autocomplete="username"></label><label>رمز عبور<input id="adminPass" type="password" autocomplete="current-password"></label></div>
+ <div id="loginError" style="color:#c52639;font-size:12px;margin:10px 0"></div><button class="btn-wide" style="background:var(--amber)" onclick="AK.adminLogin()">ورود</button>
+ <div class="notice" style="margin-top:12px">نسخه فعلی برای تست: <b>admin</b> / <b>admin123</b>. برای نسخه واقعی باید احراز هویت سروری جایگزین شود.</div></div></div>
+</div>
+
+<!-- Admin -->
+<div class="modal-backdrop" id="adminModal">
+ <div class="admin-panel"><div class="admin-top"><b>پنل مدیریت آمپرکالا</b><div><button class="small-btn" onclick="AK.logout()">خروج</button> <button class="small-btn" onclick="AK.closeAdmin()">بستن</button></div></div>
+ <div class="admin-grid"><aside class="admin-nav">
+  <button data-tab="dashboard" onclick="AK.showAdmin('dashboard')">داشبورد</button>
+  <button data-tab="products" onclick="AK.showAdmin('products')">محصولات و موجودی</button>
+  <button data-tab="orders" onclick="AK.showAdmin('orders')">درخواست‌های سفارش</button>
+  <button data-tab="settings" onclick="AK.showAdmin('settings')">تنظیمات</button>
+ </aside><main class="admin-content" id="adminContent"></main></div></div>
+</div>
+<button class="order-fab" onclick="AK.openOrder()">درخواست سفارش</button>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- storage / seed ---------- */
+const DBKEY='amperkala_v1';
+const SESSIONKEY='amperkala_admin_session';
+const seed = {
+  settings:{storeName:'آمپرکالا',phone:'021-9128XXXX',email:'info@amperkala.ir'},
+  products:[
+    {id:1,cat:'کابل و سیم',brand:'ایران‌مفتول',title:'کابل افشان ۳×۲.۵ روکش PVC — حلقه ۱۰۰م',specs:['۳×۲.۵','خشک'],price:3150000,stock:18,unit:'حلقه',icon:'ic-cable',active:true},
+    {id:2,cat:'کابل و سیم',brand:'سیمکو',title:'کابل مفتولی زمینی NYY ۴×۱۰',specs:['۴×۱۰','مدفون'],price:8420000,stock:10,unit:'حلقه',icon:'ic-cable',active:true},
+    {id:3,cat:'تابلو برق',brand:'اشنایدر',title:'تابلو فلزی ایستاده IP54 با شاسی',specs:['IP54','۸۰۰×۶۰۰'],price:12400000,stock:3,unit:'عدد',icon:'ic-panel',active:true},
+    {id:4,cat:'کلید و کنتاکتور',brand:'ABB',title:'کلید اتوماتیک کامپکت ۱۰۰ آمپر S3',specs:['100A','36kA'],price:4250000,stock:5,unit:'عدد',icon:'ic-breaker',active:true},
+    {id:5,cat:'ابزار اندازه‌گیری',brand:'FLUKE',title:'کلمپ آمپرمتر دیجیتال AC/DC ۶۰۰A',specs:['600A','True RMS'],price:3650000,stock:4,unit:'عدد',icon:'ic-meter',active:true},
+    {id:6,cat:'روشنایی صنعتی',brand:'پارس شهاب',title:'پروژکتور صنعتی ضدآب ۲۰۰ وات',specs:['200W','IP66'],price:1690000,stock:7,unit:'عدد',icon:'ic-light',active:true},
+    {id:7,cat:'ایمنی و HSE',brand:'HONEYWELL',title:'کفش ایمنی ضدجرقه با کف عایق',specs:['ESD','ضدسوراخ'],price:1450000,stock:12,unit:'جفت',icon:'ic-safety',active:true},
+    {id:8,cat:'کلید و کنتاکتور',brand:'CHINT',title:'کنتاکتور مینیاتوری ۹ آمپر NXC',specs:['9A','24V DC'],price:410000,stock:0,unit:'عدد',icon:'ic-breaker',active:true}
+  ],
+  orders:[]
+};
+function db(){let x=localStorage.getItem(DBKEY); if(!x){localStorage.setItem(DBKEY,JSON.stringify(seed));return structuredClone(seed)} return JSON.parse(x)}
+function save(x){localStorage.setItem(DBKEY,JSON.stringify(x))}
+let state=db(), request=[];
+const money=n=>Number(n||0).toLocaleString('fa-IR')+' تومان';
+
+/* ---------- replace product rows ---------- */
+const rowMap={cable:'row-cable',panel:'row-panel',meter:'row-meter',light:'row-light',safety:'row-safety'};
+const catMap={cable:'کابل و سیم',panel:'تابلو برق',meter:'ابزار اندازه‌گیری',light:'روشنایی صنعتی',safety:'ایمنی و HSE'};
+function card(p){
+  const unavailable=p.stock<=0;
+  return `<div class="pcard" data-pid="${p.id}">
+    <div class="imgwrap"><svg><use href="#${p.icon}"/></svg></div>
+    <div class="body"><div class="brand">${p.brand}</div><div class="title">${p.title}</div>
+    <div class="specs">${p.specs.map(s=>`<span>${s}</span>`).join('')}</div>
+    <div class="pricebox"><span class="new">${money(p.price).replace(' تومان','')}</span><span class="toman">تومان</span></div>
+    <div class="stock"><i></i>${unavailable?'ناموجود':`موجودی: ${p.stock} ${p.unit}`}</div>
+    <button class="addbtn" ${unavailable?'disabled':''} onclick="window.AK.add(${p.id})">${unavailable?'ناموجود':'افزودن به درخواست'}</button>
+    </div></div>`;
+}
+function render(){
+  Object.keys(rowMap).forEach(k=>{
+    const el=document.getElementById(rowMap[k]);
+    if(!el)return;
+    el.innerHTML=state.products.filter(p=>p.active&&p.cat===catMap[k]).map(card).join('');
+  });
+  // Flash section uses first six active products.
+  const flash=document.getElementById('flashRow');
+  if(flash) flash.innerHTML=state.products.filter(p=>p.active).slice(0,6).map(card).join('');
+}
+render();
+
+/* ---------- request basket ---------- */
+function add(id){
+  const p=state.products.find(x=>x.id===id); if(!p||p.stock<=0)return;
+  const x=request.find(i=>i.id===id);
+  if(x){if(x.qty<p.stock)x.qty++}else request.push({id,qty:1});
+  badge(); openOrder();
+}
+function remove(id){request=request.filter(x=>x.id!==id);renderOrder()}
+function change(id,d){
+  const x=request.find(i=>i.id===id),p=state.products.find(y=>y.id===id);
+  if(!x||!p)return;x.qty=Math.max(1,Math.min(p.stock,x.qty+d));renderOrder()
+}
+function badge(){document.getElementById('cartBadge').textContent=request.reduce((a,x)=>a+x.qty,0)}
+function openOrder(){document.getElementById('orderModal').classList.add('show');renderOrder()}
+function closeOrder(){document.getElementById('orderModal').classList.remove('show')}
+function renderOrder(){
+ const box=document.getElementById('orderItems');
+ if(!request.length){box.innerHTML='<div class="notice">هنوز کالایی به درخواست اضافه نشده است.</div>';document.getElementById('reqTotal').textContent='—';badge();return}
+ let total=0;
+ box.innerHTML=request.map(x=>{
+  const p=state.products.find(y=>y.id===x.id),sub=p.price*x.qty;total+=sub;
+  return `<div class="order-item"><div><b>${p.title}</b><small style="display:block;color:#777">${p.brand}</small></div>
+  <div class="qty"><button onclick="AK.change(${p.id},-1)">−</button><b>${x.qty}</b><button onclick="AK.change(${p.id},1)">+</button></div>
+  <div>${money(sub)}</div><button onclick="AK.remove(${p.id})">×</button></div>`;
+ }).join('');
+ document.getElementById('reqTotal').textContent=money(total);badge();
+}
+async function submitRequest(e){
+ e.preventDefault(); if(!request.length)return;
+ const f=new FormData(e.target), d=Object.fromEntries(f.entries());
+ const dbx=db(); const items=request.map(x=>{const p=dbx.products.find(y=>y.id===x.id);return {id:p.id,title:p.title,qty:x.qty,unit:p.unit,unitPrice:p.price}});
+ const order={id:'AK-'+Date.now().toString().slice(-7),createdAt:new Date().toISOString(),status:'در انتظار بررسی',customer:d,items,total:items.reduce((s,i)=>s+i.qty*i.unitPrice,0),finalTotal:null,note:''};
+ dbx.orders.unshift(order);save(dbx);state=dbx;request=[];
+ e.target.reset();badge();closeOrder();alert('درخواست سفارش شما ثبت شد. پس از بررسی موجودی با شما تماس می‌گیریم.'); 
+}
+
+/* ---------- admin ---------- */
+function adminLogin(){
+ const u=document.getElementById('adminUser').value.trim(),p=document.getElementById('adminPass').value;
+ // Demo credentials. In production these must be server-side hashed credentials.
+ if(u==='admin'&&p==='admin123'){sessionStorage.setItem(SESSIONKEY,'1');document.getElementById('loginModal').classList.remove('show');openAdmin()}
+ else document.getElementById('loginError').textContent='نام کاربری یا رمز عبور اشتباه است.';
+}
+function openLogin(){document.getElementById('loginModal').classList.add('show')}
+function openAdmin(){
+ if(sessionStorage.getItem(SESSIONKEY)!=='1'){openLogin();return}
+ state=db();document.getElementById('adminModal').classList.add('show');showAdmin('dashboard');
+}
+function logout(){sessionStorage.removeItem(SESSIONKEY);document.getElementById('adminModal').classList.remove('show')}
+function closeAdmin(){document.getElementById('adminModal').classList.remove('show')}
+function showAdmin(tab){
+ document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+ const c=document.getElementById('adminContent');
+ if(tab==='dashboard') c.innerHTML=dashboardHTML();
+ if(tab==='products') c.innerHTML=productsHTML();
+ if(tab==='orders') c.innerHTML=ordersHTML();
+ if(tab==='settings') c.innerHTML=settingsHTML();
+}
+function dashboardHTML(){
+ const orders=state.orders.length, products=state.products.length, low=state.products.filter(p=>p.stock<=2).length;
+ return `<div class="admin-cards"><div class="admin-card">محصولات<br><b>${products}</b></div><div class="admin-card">درخواست‌ها<br><b>${orders}</b></div><div class="admin-card">موجودی کم/ناموجود<br><b>${low}</b></div></div>
+ <div class="notice">این نسخه یک پروتوتایپ قابل اجرا در مرورگر است و داده‌ها را در localStorage نگه می‌دارد. برای استفاده واقعی، احراز هویت و دیتابیس باید روی سرور منتقل شود.</div>
+ <h3>آخرین درخواست‌ها</h3>${ordersTable(state.orders.slice(0,5))}`;
+}
+function productsHTML(){
+ return `<div class="admin-actions"><button class="small-btn primary" onclick="AK.addProduct()">+ افزودن محصول</button><button class="small-btn" onclick="AK.exportData()">خروجی پشتیبان</button><button class="small-btn" onclick="AK.importData()">ورود پشتیبان</button></div>
+ <table class="admin-table"><thead><tr><th>محصول</th><th>دسته</th><th>قیمت</th><th>موجودی</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>
+ ${state.products.map(p=>`<tr><td><input id="pt-${p.id}" value="${esc(p.title)}"></td><td><select id="pc-${p.id}">${['کابل و سیم','تابلو برق','کلید و کنتاکتور','ابزار اندازه‌گیری','روشنایی صنعتی','ایمنی و HSE'].map(c=>`<option ${p.cat===c?'selected':''}>${c}</option>`).join('')}</select></td>
+ <td><input type="number" id="pp-${p.id}" value="${p.price}"></td><td><input type="number" id="ps-${p.id}" value="${p.stock}" min="0"></td>
+ <td><span class="status ${p.stock>0?'ok':'no'}">${p.stock>0?'موجود':'ناموجود'}</span></td><td><button class="small-btn primary" onclick="AK.saveProduct(${p.id})">ذخیره</button> <button class="small-btn" onclick="AK.deleteProduct(${p.id})">حذف</button></td></tr>`).join('')}
+ </tbody></table>`;
+}
+function ordersTable(list){
+ if(!list.length)return '<div class="notice">درخواستی ثبت نشده است.</div>';
+ return `<table class="admin-table"><thead><tr><th>کد</th><th>مشتری</th><th>مبلغ اولیه</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>${list.map(o=>`<tr>
+ <td>${o.id}</td><td>${esc(o.customer.name||'—')}<br>${esc(o.customer.phone||'—')}</td><td>${money(o.total)}</td>
+ <td><span class="status ${o.status.includes('تأیید')?'ok':o.status.includes('ناموجود')?'no':'wait'}">${o.status}</span></td>
+ <td><button class="small-btn primary" onclick="AK.editOrder('${o.id}')">بررسی</button></td></tr>`).join('')}</tbody></table>`;
+}
+function ordersHTML(){return ordersTable(state.orders)}
+function settingsHTML(){
+ return `<div class="form-grid"><label>نام فروشگاه<input id="setName" value="${esc(state.settings.storeName)}"></label>
+ <label>شماره تماس<input id="setPhone" value="${esc(state.settings.phone)}"></label><label>ایمیل<input id="setEmail" value="${esc(state.settings.email)}"></label></div>
+ <div class="admin-actions"><button class="small-btn primary" onclick="AK.saveSettings()">ذخیره تنظیمات</button></div>`;
+}
+function editOrder(id){
+ const o=state.orders.find(x=>x.id===id);if(!o)return;
+ const c=document.getElementById('adminContent');
+ c.innerHTML=`<button class="small-btn" onclick="AK.showAdmin('orders')">← بازگشت</button><h3 style="margin:15px 0">${o.id}</h3>
+ <div class="notice">مشتری: ${esc(o.customer.name)} | تماس: ${esc(o.customer.phone)} | ${esc(o.customer.email||'')}</div>
+ <table class="admin-table"><thead><tr><th>کالا</th><th>تعداد</th><th>قیمت واحد</th><th>جمع</th></tr></thead><tbody>${o.items.map(i=>`<tr><td>${esc(i.title)}</td><td>${i.qty} ${i.unit}</td><td>${money(i.unitPrice)}</td><td>${money(i.qty*i.unitPrice)}</td></tr>`).join('')}</tbody></table>
+ <div class="form-grid" style="margin-top:15px"><label>مبلغ نهایی (تومان)<input type="number" id="final-${o.id}" value="${o.finalTotal??o.total}"></label>
+ <label>وضعیت<select id="status-${o.id}">${['در انتظار بررسی','موجودی تأیید شد','قیمت نهایی ارسال شد','تأیید مشتری','ناموجود / نیاز به تماس','لغو شده'].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join('')}</select></label>
+ <label style="grid-column:1/-1">پیام برای مشتری<textarea id="note-${o.id}">${esc(o.note||'')}</textarea></label></div>
+ <div class="admin-actions"><button class="small-btn primary" onclick="AK.saveOrder('${o.id}')">ذخیره و اعلام به مشتری</button></div>`;
+}
+function saveOrder(id){
+ const d=db(),o=d.orders.find(x=>x.id===id);if(!o)return;
+ o.finalTotal=Number(document.getElementById('final-'+id).value)||o.total;o.status=document.getElementById('status-'+id).value;o.note=document.getElementById('note-'+id).value;
+ save(d);state=d;alert('درخواست به‌روزرسانی شد.');showAdmin('orders');
+}
+function saveProduct(id){
+ const d=db(),p=d.products.find(x=>x.id===id);if(!p)return;
+ p.title=document.getElementById('pt-'+id).value;p.cat=document.getElementById('pc-'+id).value;p.price=Number(document.getElementById('pp-'+id).value)||0;p.stock=Number(document.getElementById('ps-'+id).value)||0;
+ save(d);state=d;render();productsHTML();showAdmin('products');
+}
+function addProduct(){
+ const d=db(),id=Date.now();d.products.push({id,cat:'کابل و سیم',brand:'برند جدید',title:'محصول جدید',specs:[],price:0,stock:0,unit:'عدد',icon:'ic-cable',active:true});save(d);state=d;showAdmin('products');
+}
+function deleteProduct(id){if(!confirm('محصول حذف شود؟'))return;const d=db();d.products=d.products.filter(p=>p.id!==id);save(d);state=d;render();showAdmin('products')}
+function saveSettings(){const d=db();d.settings.storeName=document.getElementById('setName').value;d.settings.phone=document.getElementById('setPhone').value;d.settings.email=document.getElementById('setEmail').value;save(d);state=d;alert('تنظیمات ذخیره شد.')}
+function exportData(){const a=document.createElement('a');a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(db(),null,2));a.download='amperkala-backup.json';a.click()}
+function importData(){const inp=document.createElement('input');inp.type='file';inp.accept='.json';inp.onchange=()=>{const r=new FileReader();r.onload=()=>{try{localStorage.setItem(DBKEY,r.result);state=db();render();showAdmin('products');alert('پشتیبان وارد شد.')}catch(e){alert('فایل نامعتبر است.')}};r.readAsText(inp.files[0])};inp.click()}
+function customerOrderStatus(){
+ const phone=prompt('شماره موبایلی که با آن درخواست ثبت کردید را وارد کنید:');if(!phone)return;
+ const d=db(),found=d.orders.filter(o=>o.customer.phone===phone);
+ if(!found.length){alert('درخواستی با این شماره پیدا نشد.');return}
+ alert(found.map(o=>`${o.id} — ${o.status}${o.finalTotal?` — مبلغ نهایی: ${money(o.finalTotal)}`:''}${o.note?`\n${o.note}`:''}`).join('\n\n'));
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+
+window.AK={add,remove,change,openOrder,closeOrder,submitRequest,openLogin,adminLogin,openAdmin,logout,closeAdmin,showAdmin,editOrder,saveOrder,saveProduct,addProduct,deleteProduct,saveSettings,exportData,importData,customerOrderStatus};
+
+document.getElementById('cartAct').addEventListener('click',openOrder);
+/* ---------- fixed + smart product search ---------- */
+const searchForm=document.querySelector('.searchbar');
+const searchInput=searchForm?.querySelector('input');
+const searchSelect=searchForm?.querySelector('select');
+
+function akNormalize(v){
+  return String(v??'').toLowerCase()
+    .replace(/[يى]/g,'ی').replace(/ك/g,'ک')
+    .replace(/[۰-۹]/g,d=>String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+    .replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)))
+    .replace(/[\u200c\u200f]/g,' ')
+    .replace(/[^\p{L}\p{N}]+/gu,' ')
+    .trim();
+}
+function akTokens(v){return akNormalize(v).split(/\s+/).filter(Boolean)}
+
+function akProductScore(p,q,cat){
+  const query=akNormalize(q);
+  if(!query)return 0;
+  const tokens=akTokens(q);
+  const hay=akNormalize([
+    p.title,p.brand,p.cat,p.unit,p.id,
+    ...(Array.isArray(p.specs)?p.specs:[]),
+    p.description,p.technical
+  ].join(' '));
+  const title=akNormalize(p.title), brand=akNormalize(p.brand), pc=akNormalize(p.cat);
+  // Category filter is deliberately loose: it accepts the actual product category
+  // instead of relying on the hard-coded visual-row map.
+  if(cat && cat!=='همه دسته‌ها' && cat!=='همه دسته ها'){
+    const c=akNormalize(cat);
+    if(!pc.includes(c) && !c.includes(pc)) return -1;
+  }
+  let score=0;
+  if(title===query) score+=150;
+  if(title.includes(query)) score+=80;
+  if(brand.includes(query)) score+=45;
+  if(pc.includes(query)) score+=30;
+  tokens.forEach(t=>{
+    if(title.includes(t)) score+=25;
+    else if(brand.includes(t)) score+=18;
+    else if(hay.includes(t)) score+=10;
+  });
+  // A product is a match if every meaningful search token exists somewhere
+  // in its searchable fields. This avoids false "کالا یافت نشد" results.
+  if(tokens.length && tokens.every(t=>hay.includes(t))) score+=50;
+  return score;
+}
+
+function akAllProducts(){
+  // IMPORTANT: use the live DB, not a stale `state` object.
+  try{
+    const d=typeof db==='function'?db():null;
+    return Array.isArray(d?.products)?d.products:[];
+  }catch(e){
+    return Array.isArray(window.state?.products)?window.state.products:[];
+  }
+}
+
+function akSearchProducts(q,cat){
+  const products=akAllProducts();
+  return products.map(p=>({p,score:akProductScore(p,q,cat)}))
+    .filter(x=>x.score>=0 && x.score>0)
+    .sort((a,b)=>b.score-a.score);
+}
+
+function akEnsureSearchPanel(){
+  if(document.getElementById('akSearchPanel'))return;
+  const panel=document.createElement('div');
+  panel.id='akSearchPanel';
+  panel.innerHTML='<div class="ak-search-head"><b>نتایج جستجوی هوشمند</b><span id="akSearchHint"></span></div><div id="akSearchResults"></div>';
+  const header=document.querySelector('header.main');
+  if(header)header.appendChild(panel);
+}
+akEnsureSearchPanel();
+
+function akShowResults(q){
+  const panel=document.getElementById('akSearchPanel');
+  const box=document.getElementById('akSearchResults');
+  if(!panel||!box)return;
+  q=String(q||'').trim();
+  if(!q){
+    panel.classList.remove('show');
+    document.querySelectorAll('.pcard').forEach(c=>c.style.display='');
+    return;
+  }
+
+  const results=akSearchProducts(q,searchSelect?.value||'همه دسته‌ها');
+  document.querySelectorAll('.pcard').forEach(c=>c.style.display='');
+
+  document.getElementById('akSearchHint').textContent =
+    results.length ? `${Math.min(results.length,8)} نتیجه مرتبط` : 'نتیجه‌ای پیدا نشد';
+
+  box.innerHTML=results.length
+    ? results.slice(0,8).map(({p})=>`
+      <button type="button" class="ak-search-item" data-id="${p.id}">
+        <span class="ak-search-icon"><svg><use href="#${p.icon||'ic-cable'}"></use></svg></span>
+        <span class="ak-search-text">
+          <b>${esc(p.title)}</b>
+          <small>${esc([p.brand,p.cat,...(p.specs||[])].filter(Boolean).join(' · '))}</small>
+        </span>
+        <strong>${money(p.price)}</strong>
+      </button>`).join('')
+    : '<div class="ak-search-empty">کالا یافت نشد. نام کالا، برند، آمپراژ یا کد فنی را وارد کنید.</div>';
+
+  panel.classList.add('show');
+}
+
+searchInput?.addEventListener('input',()=>akShowResults(searchInput.value));
+searchSelect?.addEventListener('change',()=>{if(searchInput.value.trim())akShowResults(searchInput.value)});
+
+searchForm?.addEventListener('submit',e=>{
+  e.preventDefault();
+  const q=searchInput?.value?.trim()||'';
+  if(!q){akShowResults('');return;}
+
+  const results=akSearchProducts(q,searchSelect?.value||'همه دسته‌ها');
+  if(!results.length){akShowResults(q);return;}
+
+  const first=results[0].p;
+  document.getElementById('akSearchPanel')?.classList.remove('show');
+  const card=document.querySelector(`.pcard[data-pid="${CSS.escape(String(first.id))}"]`);
+  if(card){
+    card.scrollIntoView({behavior:'smooth',block:'center'});
+    card.style.outline='3px solid var(--amber)';
+    setTimeout(()=>card.style.outline='',1400);
+  }else{
+    // Product may exist in DB but not be in a visible category row.
+    // Render the public rows first, then try again.
+    try{render()}catch(e){}
+    const card2=document.querySelector(`.pcard[data-pid="${CSS.escape(String(first.id))}"]`);
+    if(card2){
+      card2.scrollIntoView({behavior:'smooth',block:'center'});
+      card2.style.outline='3px solid var(--amber)';
+      setTimeout(()=>card2.style.outline='',1400);
+    }
+  }
+});
+
+document.getElementById('akSearchResults')?.addEventListener('click',e=>{
+  const item=e.target.closest('.ak-search-item');
+  if(!item)return;
+  const p=akAllProducts().find(x=>String(x.id)===String(item.dataset.id));
+  if(!p)return;
+  searchInput.value=p.title;
+  document.getElementById('akSearchPanel')?.classList.remove('show');
+  try{render()}catch(e){}
+  const card=document.querySelector(`.pcard[data-pid="${CSS.escape(String(p.id))}"]`);
+  if(card){
+    card.scrollIntoView({behavior:'smooth',block:'center'});
+    card.style.outline='3px solid var(--amber)';
+    setTimeout(()=>card.style.outline='',1400);
+  }
+});
+
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.searchbar')&&!e.target.closest('#akSearchPanel'))
+    document.getElementById('akSearchPanel')?.classList.remove('show');
+});
+
+
+})();
+</script>
+
+
+<style id="ak-admin-v2">
+/* ===== AmperKala Admin V2 ===== */
+.akv2{font-family:var(--font-d);direction:rtl}
+.akv2 .admin-grid{grid-template-columns:230px 1fr}
+.akv2 .admin-nav{padding:14px}
+.akv2 .admin-nav button{display:flex;align-items:center;gap:8px}
+.akv2 .admin-content{padding:22px}
+.akv2 .v2-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.akv2 .v2-head h2{font-size:20px}.akv2 .muted{color:#68707c;font-size:12px}
+.akv2 .v2-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.akv2 .v2-stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}
+.akv2 .v2-stat b{font:800 23px var(--font-m);display:block;margin-top:6px}
+.akv2 .v2-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px}
+.akv2 .v2-form{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.akv2 .v2-form label{display:grid;gap:6px;font-size:12px;color:var(--ink-soft)}
+.akv2 .v2-form input,.akv2 .v2-form textarea,.akv2 .v2-form select{width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;font-family:inherit;background:#fff}
+.akv2 .v2-form textarea{min-height:100px;resize:vertical}
+.akv2 .full{grid-column:1/-1}
+.akv2 .v2-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.akv2 .v2-btn{padding:9px 13px;border-radius:7px;background:#e9edf1;font-size:12px;font-weight:800}
+.akv2 .v2-btn.primary{background:var(--amber);color:#161000}.akv2 .v2-btn.danger{background:#fdebed;color:#b51f31}
+.akv2 .v2-table{width:100%;border-collapse:collapse}.akv2 .v2-table th,.akv2 .v2-table td{padding:10px;border-bottom:1px solid #edf0f3;text-align:right;font-size:12px;vertical-align:middle}
+.akv2 .v2-table th{background:#f7f8fa}.akv2 .thumb{width:54px;height:54px;object-fit:cover;border-radius:7px;border:1px solid var(--line);background:#eef1f5}
+.akv2 .media-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.akv2 .media{position:relative;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}.akv2 .media img{width:100%;height:120px;object-fit:cover}.akv2 .media .mi{padding:8px;font-size:10px}.akv2 .media button{position:absolute;top:6px;left:6px}
+.akv2 .upload{border:2px dashed #cbd2da;border-radius:10px;padding:20px;text-align:center;background:#fafbfc}
+.akv2 .color-row{display:flex;gap:10px;align-items:center}.akv2 input[type=color]{width:54px;height:38px;padding:2px}
+.akv2 .preview-logo{max-width:160px;max-height:70px;object-fit:contain;background:#10151c;border-radius:8px;padding:8px}
+.akv2 .product-editor{display:grid;grid-template-columns:220px 1fr;gap:18px}.akv2 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.akv2 .gallery img{width:100%;height:75px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.akv2 .mini-note{font-size:11px;color:#6d7580;line-height:1.8}
+@media(max-width:900px){.akv2 .v2-grid{grid-template-columns:repeat(2,1fr)}.akv2 .media-grid{grid-template-columns:repeat(3,1fr)}.akv2 .product-editor{grid-template-columns:1fr}}
+@media(max-width:640px){.akv2 .v2-form{grid-template-columns:1fr}.akv2 .v2-grid{grid-template-columns:1fr}.akv2 .media-grid{grid-template-columns:repeat(2,1fr)}.akv2 .admin-content{padding:12px}.akv2 .v2-table{display:block;overflow:auto;white-space:nowrap}}
+</style>
+<script>
+(function(){
+'use strict';
+const KEY='amperkala_v1', SESSION='amperkala_admin_session';
+const readDB=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}};
+const saveDB=d=>{localStorage.setItem(KEY,JSON.stringify(d)); return d};
+const esc2=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const money2=n=>Number(n||0).toLocaleString('fa-IR')+' تومان';
+const fileToData=file=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)});
+const seedCats=['کابل و سیم','تابلو برق','کلید و کنتاکتور','ابزار اندازه‌گیری','روشنایی صنعتی','موتور و گیربکس','اتوماسیون صنعتی','ایمنی و HSE'];
+function normalize(d){
+ d.settings=d.settings||{}; const defs={storeName:'آمپرکالا',phone:'021-9128XXXX',email:'info@amperkala.ir',address:'تهران، بزرگراه صنعتی',primary:'#FFB800',secondary:'#10151C',button:'#FFB800',header:'#10151C',logo:'',heroTitle:'هر آنچه برای تابلو، خط تولید و برق‌کشی صنعتی نیاز دارید',heroText:'فروش تخصصی تجهیزات برق صنعتی با مشاوره فنی.',heroEyebrow:'مناسبتی — تجهیز پروژه‌های صنعتی پیش از فصل تولید',heroBanner:'',whatsapp:'',instagram:'',social:'',about:'فروشگاه تخصصی تجهیزات برق صنعتی',utilityText:'ارسال به سراسر کشور',supportText:'پشتیبانی فنی',footerCopyright:'© آمپرکالا — کلیه حقوق محفوظ است.'}; Object.keys(defs).forEach(k=>{if(d.settings[k]===undefined)d.settings[k]=defs[k]});
+ d.categories=Array.isArray(d.categories)?d.categories:[]; d.categories=d.categories.map((c,i)=>typeof c==='string'?{id:i+1,name:c}:c); if(!d.categories.length)d.categories=seedCats.map((name,i)=>({id:i+1,name}));
+ d.media=Array.isArray(d.media)?d.media:[];
+ d.customers=Array.isArray(d.customers)?d.customers:[];
+ d.admins=Array.isArray(d.admins)?d.admins:[{id:1,name:'مدیر اصلی',username:'admin',role:'مدیر کل'}];
+ d.pages=Array.isArray(d.pages)?d.pages:[{id:1,title:'درباره ما',slug:'about',content:d.settings.about||''},{id:2,title:'تماس با ما',slug:'contact',content:d.settings.address||''}];
+ d.products=(d.products||[]).map(p=>Object.assign({images:[],mainImage:'',description:'',technical:'',unit:'عدد',active:true},p));
+ d.orders=d.orders||[];
+ return d;
+}
+function db(){return normalize(readDB())}
+function imgSrc(p){return p.mainImage||p.images?.[0]||''}
+function navBtn(tab,label,icon){return `<button data-tab="${tab}" onclick="AKV.show('${tab}')">${icon||'•'} ${label}</button>`}
+function shell(content){
+ return `<div class="akv2"><div class="v2-head"><div><h2>${content.title||''}</h2><div class="muted">${content.sub||''}</div></div>${content.actions||''}</div>${content.body||''}</div>`;
+}
+function dashboard(){
+ const d=db(), low=d.products.filter(p=>p.stock<=2).length, active=d.products.filter(p=>p.active).length;
+ return shell({title:'داشبورد',sub:'نمای کلی فروشگاه و عملیات',body:
+ `<div class="v2-grid">
+  <div class="v2-stat">محصولات فعال<b>${active}</b></div>
+  <div class="v2-stat">درخواست سفارش<b>${d.orders.length}</b></div>
+  <div class="v2-stat">موجودی کم / ناموجود<b>${low}</b></div>
+  <div class="v2-stat">مشتریان<b>${d.customers.length}</b></div>
+ </div>
+ <div class="v2-card"><b>آخرین درخواست‌ها</b><div style="overflow:auto;margin-top:10px">${ordersTable2(d.orders.slice(0,8))}</div></div>
+ <div class="v2-card"><b>وضعیت نسخه</b><p class="mini-note">این نسخه همچنان یک پنل مستقل داخل HTML است و داده‌ها را در localStorage مرورگر نگه می‌دارد. برای سایت واقعی، احراز هویت، فایل‌ها و دیتابیس باید سمت سرور پیاده‌سازی شوند.</p></div>`});
+}
+function products(){
+ const d=db();
+ const rows=d.products.map(p=>`<tr><td>${imgSrc(p)?`<img class="thumb" src="${imgSrc(p)}">`:'—'}</td><td><b>${esc2(p.title)}</b><br><span class="muted">${esc2(p.brand)}</span></td><td>${esc2(p.cat)}</td><td>${money2(p.price)}</td><td>${p.stock} ${esc2(p.unit)}</td><td><span class="status ${p.active?'ok':'no'}">${p.active?'فعال':'غیرفعال'}</span></td><td><button class="v2-btn primary" onclick="AKV.productForm(${p.id})">ویرایش</button> <button class="v2-btn danger" onclick="AKV.delProduct(${p.id})">حذف</button></td></tr>`).join('');
+ return shell({title:'مدیریت محصولات',sub:'افزودن، ویرایش، تصویر، قیمت، موجودی و مشخصات فنی',actions:`<button class="v2-btn primary" onclick="AKV.productForm()">+ افزودن محصول</button>`,body:
+ `<div class="v2-card"><div style="overflow:auto"><table class="v2-table"><thead><tr><th>تصویر</th><th>محصول</th><th>دسته</th><th>قیمت</th><th>موجودی</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>${rows||'<tr><td colspan="7">محصولی ثبت نشده است.</td></tr>'}</tbody></table></div></div>`});
+}
+function productForm(id){
+ const d=db(), p=id?d.products.find(x=>x.id===id):{id:Date.now(),cat:d.categories[0]?.name||'',brand:'',title:'',specs:[],price:0,stock:0,unit:'عدد',icon:'ic-cable',active:true,images:[],mainImage:'',description:'',technical:''};
+ if(!p)return;
+ const cats=d.categories.map(c=>`<option ${c.name===p.cat?'selected':''}>${esc2(c.name)}</option>`).join('');
+ const gallery=(p.images||[]).map((x,i)=>`<div><img src="${x}" onclick="AKV.setMainImage(${p.id},${i})" title="برای تصویر اصلی شدن کلیک کن"><div style="display:flex;gap:4px;margin-top:4px"><button class="v2-btn ${p.mainImage===x?'primary':''}" onclick="AKV.setMainImage(${p.id},${i})">${p.mainImage===x?'تصویر اصلی':'اصلی کن'}</button><button class="v2-btn danger" onclick="AKV.removeImage(${p.id},${i})">حذف</button></div></div>`).join('');
+ document.getElementById('adminContent').innerHTML=`<div class="akv2"><div class="v2-head"><div><h2>${id?'ویرایش محصول':'افزودن محصول'}</h2><div class="muted">همه اطلاعات محصول از داخل پنل قابل مدیریت است.</div></div><button class="v2-btn" onclick="AKV.show('products')">← بازگشت</button></div>
+ <div class="product-editor"><div class="v2-card"><b>تصاویر محصول</b><div class="upload" style="margin-top:10px"><input id="pimgs" type="file" accept="image/*" multiple onchange="AKV.previewFiles(this)"><div class="mini-note">چند تصویر انتخاب کن؛ اولین تصویر به عنوان تصویر اصلی استفاده می‌شود.</div>
+<select id="mediaPick" style="margin-top:10px;padding:9px;border:1px solid var(--line);border-radius:7px;width:100%"><option value="">انتخاب تصویر از کتابخانه رسانه</option>${d.media.map(m=>`<option value="${m.id}">${esc2(m.name)}</option>`).join('')}</select>
+<button class="v2-btn" style="margin-top:7px" onclick="AKV.addMediaToProduct(${p.id})">افزودن تصویر انتخاب‌شده</button></div><div class="gallery" id="pgallery">${gallery}</div></div>
+ <div class="v2-card"><div class="v2-form">
+ <label>نام محصول<input id="ptitle" value="${esc2(p.title)}"></label><label>برند<input id="pbrand" value="${esc2(p.brand)}"></label>
+ <label>دسته‌بندی<select id="pcat">${cats}</select></label><label>واحد فروش<input id="punit" value="${esc2(p.unit)}"></label>
+ <label>قیمت (تومان)<input id="pprice" type="number" value="${p.price}"></label><label>موجودی<input id="pstock" type="number" min="0" value="${p.stock}"></label>
+ <label>مشخصات فنی<input id="pspecs" value="${esc2((p.specs||[]).join('، '))}"></label><label>وضعیت<select id="pactive"><option value="1" ${p.active?'selected':''}>فعال</option><option value="0" ${!p.active?'selected':''}>غیرفعال</option></select></label>
+ <label class="full">توضیحات کامل<textarea id="pdesc">${esc2(p.description)}</textarea></label><label class="full">مشخصات فنی کامل<textarea id="ptech">${esc2(p.technical)}</textarea></label>
+ </div><div class="v2-actions"><button class="v2-btn primary" onclick="AKV.saveProductForm(${p.id})">ذخیره محصول</button><button class="v2-btn" onclick="AKV.show('products')">انصراف</button></div></div></div></div>`;
+ window._akvProduct=p;
+}
+async function previewFiles(input){
+ if(!window._akvProduct)return; const files=[...input.files]; if(!files.length)return;
+ const urls=await Promise.all(files.map(fileToData)); window._akvProduct.images=(window._akvProduct.images||[]).concat(urls);
+ if(!window._akvProduct.mainImage)window._akvProduct.mainImage=urls[0];
+ productForm(window._akvProduct.id);
+}
+function saveProductForm(id){
+ const d=db(), idx=d.products.findIndex(x=>x.id===id);
+ const p=idx>=0?d.products[idx]:window._akvProduct;
+ Object.assign(p,{id,title:document.getElementById('ptitle').value,brand:document.getElementById('pbrand').value,cat:document.getElementById('pcat').value,unit:document.getElementById('punit').value,price:Number(document.getElementById('pprice').value)||0,stock:Number(document.getElementById('pstock').value)||0,specs:document.getElementById('pspecs').value.split(/[,،]/).map(x=>x.trim()).filter(Boolean),active:document.getElementById('pactive').value==='1',description:document.getElementById('pdesc').value,technical:document.getElementById('ptech').value,images:p.images||[],mainImage:p.mainImage||''});
+ if(idx<0)d.products.push(p); saveDB(d); if(window.AK?.render)try{window.AK.render()}catch(e){}; alert('محصول ذخیره شد.'); show('products');
+}
+function removeImage(id,i){const d=db(),p=d.products.find(x=>x.id===id);if(!p)return;p.images.splice(i,1);if(p.mainImage===p.images[i])p.mainImage=p.images[0]||'';saveDB(d);productForm(id)}
+function delProduct(id){if(!confirm('محصول حذف شود؟'))return;const d=db();d.products=d.products.filter(p=>p.id!==id);saveDB(d);show('products')}
+function media(){
+ const d=db(), items=d.media.map(m=>`<div class="media"><img src="${m.data}"><button class="v2-btn danger" onclick="AKV.delMedia(${m.id})">×</button><div class="mi">${esc2(m.name)}</div></div>`).join('');
+ return shell({title:'کتابخانه رسانه',sub:'آپلود، حذف و استفاده مجدد از تصاویر',body:`<div class="v2-card"><div class="upload"><input type="file" accept="image/*" multiple onchange="AKV.uploadMedia(this)"><p class="mini-note">عکس‌ها داخل مرورگر ذخیره می‌شوند و می‌توانند برای محصولات استفاده شوند.</p></div></div><div class="media-grid">${items||'<div class="v2-card">هنوز تصویری آپلود نشده است.</div>'}</div>`});
+}
+async function uploadMedia(input){const d=db();for(const f of [...input.files])d.media.push({id:Date.now()+Math.random(),name:f.name,data:await fileToData(f),createdAt:new Date().toISOString()});saveDB(d);show('media')}
+function delMedia(id){if(!confirm('این تصویر حذف شود؟'))return;const d=db();d.media=d.media.filter(x=>x.id!==id);saveDB(d);show('media')}
+function categories(){
+ const d=db(), rows=d.categories.map(c=>`<tr><td>${esc2(c.name)}</td><td><button class="v2-btn danger" onclick="AKV.delCat(${c.id})">حذف</button></td></tr>`).join('');
+ return shell({title:'مدیریت دسته‌بندی‌ها',sub:'دسته‌ها را اضافه یا حذف کن',actions:`<button class="v2-btn primary" onclick="AKV.addCat()">+ دسته جدید</button>`,body:`<div class="v2-card"><table class="v2-table"><thead><tr><th>دسته</th><th>عملیات</th></tr></thead><tbody>${rows}</tbody></table></div>`});
+}
+function addCat(){const n=prompt('نام دسته جدید:');if(!n?.trim())return;const d=db();d.categories.push({id:Date.now(),name:n.trim()});saveDB(d);show('categories')}
+function delCat(id){const d=db(),c=d.categories.find(x=>x.id===id);if(!c)return;if(d.products.some(p=>p.cat===c.name)){alert('این دسته دارای محصول است و فعلاً قابل حذف نیست.');return}d.categories=d.categories.filter(x=>x.id!==id);saveDB(d);show('categories')}
+function ordersTable2(list){
+ if(!list.length)return '<div class="mini-note">درخواستی ثبت نشده است.</div>';
+ return `<table class="v2-table"><thead><tr><th>کد</th><th>مشتری</th><th>کالا</th><th>مبلغ اولیه</th><th>مبلغ نهایی</th><th>وضعیت</th><th></th></tr></thead><tbody>${list.map(o=>`<tr><td>${o.id}</td><td>${esc2(o.customer?.name)}<br>${esc2(o.customer?.phone)}</td><td>${(o.items||[]).map(i=>esc2(i.title)+' × '+i.qty).join('<br>')}</td><td>${money2(o.total)}</td><td>${o.finalTotal?money2(o.finalTotal):'—'}</td><td>${esc2(o.status)}</td><td><button class="v2-btn primary" onclick="AKV.orderForm('${o.id}')">بررسی</button></td></tr>`).join('')}</tbody></table>`;
+}
+function orders(){const d=db();return shell({title:'مدیریت درخواست‌های سفارش',sub:'اطلاعات مشتری، موجودی، قیمت اولیه و نهایی، وضعیت و پیام',body:`<div class="v2-card" style="overflow:auto">${ordersTable2(d.orders)}</div>`})}
+function orderForm(id){
+ const d=db(),o=d.orders.find(x=>x.id===id);if(!o)return;
+ document.getElementById('adminContent').innerHTML=`<div class="akv2"><div class="v2-head"><div><h2>درخواست ${o.id}</h2><div class="muted">مدیریت سفارش و اعلام نتیجه به مشتری</div></div><button class="v2-btn" onclick="AKV.show('orders')">← بازگشت</button></div>
+ <div class="v2-card"><div class="v2-form"><label>نام مشتری<input value="${esc2(o.customer?.name)}" disabled></label><label>شماره تماس<input value="${esc2(o.customer?.phone)}" disabled></label><label>ایمیل<input value="${esc2(o.customer?.email||'')}" disabled></label><label>قیمت اولیه<input value="${money2(o.total)}" disabled></label></div></div>
+ <div class="v2-card"><b>کالاهای درخواست‌شده</b><div style="overflow:auto;margin-top:10px"><table class="v2-table"><thead><tr><th>کالا</th><th>تعداد</th><th>قیمت اولیه</th><th>موجودی فعلی</th></tr></thead><tbody>${(o.items||[]).map(i=>{const p=d.products.find(x=>x.id===i.id);return `<tr><td>${esc2(i.title)}</td><td>${i.qty} ${esc2(i.unit)}</td><td>${money2(i.unitPrice)}</td><td>${p?p.stock+' '+esc2(p.unit):'حذف شده'}</td></tr>`}).join('')}</tbody></table></div></div>
+ <div class="v2-card"><div class="v2-form"><label>قیمت نهایی (تومان)<input id="ov2final" type="number" value="${o.finalTotal??o.total}"></label><label>وضعیت<select id="ov2status">${['در انتظار بررسی','موجودی تأیید شد','قیمت نهایی ارسال شد','تأیید مشتری','ناموجود / نیاز به تماس','لغو شده'].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join('')}</select></label><label class="full">یادداشت / پیام برای مشتری<textarea id="ov2note">${esc2(o.note||'')}</textarea></label></div><div class="v2-actions"><button class="v2-btn primary" onclick="AKV.saveOrder('${o.id}')">ذخیره و اعلام به مشتری</button></div></div></div>`;
+}
+function saveOrder(id){const d=db(),o=d.orders.find(x=>x.id===id);if(!o)return;o.finalTotal=Number(document.getElementById('ov2final').value)||o.total;o.status=document.getElementById('ov2status').value;o.note=document.getElementById('ov2note').value;saveDB(d);alert('درخواست به‌روزرسانی شد.');show('orders')}
+function customers(){const d=db(), seen={};d.orders.forEach(o=>{const k=o.customer?.phone;if(k)seen[k]=o.customer});const cs=[...d.customers];Object.values(seen).forEach(c=>{if(c&&!cs.some(x=>x.phone===c.phone))cs.push(c)});return shell({title:'مدیریت مشتریان',sub:'اطلاعات مشتریان ثبت‌شده و درخواست‌های آن‌ها',body:`<div class="v2-card" style="overflow:auto"><table class="v2-table"><thead><tr><th>نام</th><th>تلفن</th><th>ایمیل</th><th>تعداد درخواست</th></tr></thead><tbody>${cs.map(c=>`<tr><td>${esc2(c.name)}</td><td>${esc2(c.phone)}</td><td>${esc2(c.email||'—')}</td><td>${d.orders.filter(o=>o.customer?.phone===c.phone).length}</td></tr>`).join('')||'<tr><td colspan="4">مشتری ثبت نشده است.</td></tr>'}</tbody></table></div>`})}
+function settings(){
+ const d=db(),s=d.settings;
+ return shell({title:'شخصی‌سازی سایت',sub:'تمام موارد قابل تغییر سایت از یک صفحه',body:`<div class="v2-card"><div class="v2-form">
+ <label>نام فروشگاه<input id="sname" value="${esc2(s.storeName)}"></label><label>ایمیل<input id="semail" value="${esc2(s.email)}"></label>
+ <label>شماره تماس<input id="sphone" value="${esc2(s.phone)}"></label><label>واتساپ<input id="swa" value="${esc2(s.whatsapp)}"></label>
+ <label>اینستاگرام<input id="sins" value="${esc2(s.instagram)}"></label><label>آدرس<input id="saddr" value="${esc2(s.address)}"></label>
+ <label>رنگ اصلی<div class="color-row"><input id="sprimary" type="color" value="${s.primary}"><input value="${s.primary}" oninput="document.getElementById('sprimary').value=this.value"></div></label>
+ <label>رنگ دوم<div class="color-row"><input id="ssecondary" type="color" value="${s.secondary}"><input value="${s.secondary}" oninput="document.getElementById('ssecondary').value=this.value"></div></label>
+ <label>رنگ دکمه‌ها<div class="color-row"><input id="sbutton" type="color" value="${s.button}"><input value="${s.button}" oninput="document.getElementById('sbutton').value=this.value"></div></label>
+ <label>رنگ هدر<div class="color-row"><input id="sheader" type="color" value="${s.header}"><input value="${s.header}" oninput="document.getElementById('sheader').value=this.value"></div></label>
+ <label class="full">عنوان صفحه اصلی<input id="stitle" value="${esc2(s.heroTitle)}"></label>
+ <label class="full">توضیحات صفحه اصلی<textarea id="stext">${esc2(s.heroText)}</textarea></label>
+ <label class="full">متن معرفی فروشگاه<textarea id="sabout">${esc2(s.about)}</textarea></label>
+ <label>متن نوار بالای سایت<input id="sutility" value="${esc2(s.utilityText||'')}"></label><label>متن پشتیبانی<input id="ssupport" value="${esc2(s.supportText||'')}"></label>
+ <label class="full">متن کپی‌رایت فوتر<input id="scopyright" value="${esc2(s.footerCopyright||'')}"></label>
+ </div>
+ <div style="margin-top:18px"><b>لوگو</b><div class="upload" style="margin-top:8px"><input id="slogoFile" type="file" accept="image/*" onchange="AKV.uploadSettingImage(this,'logo')">${s.logo?`<img class="preview-logo" src="${s.logo}" style="margin-top:10px">`:'<div class="mini-note">لوگویی انتخاب نشده است.</div>'}</div></div>
+ <div style="margin-top:18px"><b>بنر اصلی صفحه خانه</b><div class="upload" style="margin-top:8px"><input id="sheroFile" type="file" accept="image/*" onchange="AKV.uploadSettingImage(this,'heroBanner')">${s.heroBanner?`<img src="${s.heroBanner}" style="max-width:100%;max-height:180px;object-fit:cover;border-radius:8px;margin-top:10px">`:''}</div></div>
+ <div class="v2-actions"><button class="v2-btn primary" onclick="AKV.saveSettings()">ذخیره تغییرات</button></div></div>`});
+}
+async function uploadSettingImage(input,key){const d=db();if(input.files[0]){d.settings[key]=await fileToData(input.files[0]);saveDB(d);show('settings')}}
+function saveSettings(){
+ const d=db(),s=d.settings;
+ Object.assign(s,{storeName:document.getElementById('sname').value,email:document.getElementById('semail').value,phone:document.getElementById('sphone').value,whatsapp:document.getElementById('swa').value,instagram:document.getElementById('sins').value,address:document.getElementById('saddr').value,primary:document.getElementById('sprimary').value,secondary:document.getElementById('ssecondary').value,button:document.getElementById('sbutton').value,header:document.getElementById('sheader').value,heroTitle:document.getElementById('stitle').value,heroText:document.getElementById('stext').value,about:document.getElementById('sabout').value,utilityText:document.getElementById('sutility').value,supportText:document.getElementById('ssupport').value,footerCopyright:document.getElementById('scopyright').value});
+ saveDB(d);applyPublicSettings();alert('تنظیمات ذخیره شد.');show('settings')
+}
+function pages(){const d=db();return shell({title:'مدیریت محتوای صفحات',sub:'متن صفحات معرفی و تماس را ویرایش کن',body:d.pages.map(pg=>`<div class="v2-card"><div class="v2-form"><label>عنوان<input id="pgtitle${pg.id}" value="${esc2(pg.title)}"></label><label>شناسه صفحه<input id="pgslug${pg.id}" value="${esc2(pg.slug)}"></label><label class="full">محتوا<textarea id="pgcontent${pg.id}">${esc2(pg.content)}</textarea></label></div><div class="v2-actions"><button class="v2-btn primary" onclick="AKV.savePage(${pg.id})">ذخیره صفحه</button></div></div>`).join('')})}
+function savePage(id){const d=db(),p=d.pages.find(x=>x.id===id);if(!p)return;p.title=document.getElementById('pgtitle'+id).value;p.slug=document.getElementById('pgslug'+id).value;p.content=document.getElementById('pgcontent'+id).value;saveDB(d);alert('صفحه ذخیره شد.')}
+function admins(){const d=db();return shell({title:'کاربران ادمین و سطح دسترسی',sub:'مدیریت کاربران پنل',actions:`<button class="v2-btn primary" onclick="AKV.addAdmin()">+ مدیر جدید</button>`,body:`<div class="v2-card"><table class="v2-table"><thead><tr><th>نام</th><th>نام کاربری</th><th>سطح دسترسی</th><th>عملیات</th></tr></thead><tbody>${d.admins.map(a=>`<tr><td>${esc2(a.name)}</td><td>${esc2(a.username)}</td><td>${esc2(a.role)}</td><td><button class="v2-btn danger" onclick="AKV.delAdmin(${a.id})">حذف</button></td></tr>`).join('')}</tbody></table><p class="mini-note" style="margin-top:10px">در نسخه واقعی، رمز عبور باید فقط سمت سرور و به صورت هش‌شده نگهداری شود.</p></div>`})}
+function addAdmin(){const name=prompt('نام مدیر:'),u=prompt('نام کاربری:');if(!name||!u)return;const d=db();d.admins.push({id:Date.now(),name,username:u,role:prompt('سطح دسترسی:','مدیر محتوا')||'مدیر محتوا'});saveDB(d);show('admins')}
+function delAdmin(id){const d=db();if(d.admins.length<=1){alert('حداقل یک مدیر باید باقی بماند.');return}d.admins=d.admins.filter(a=>a.id!==id);saveDB(d);show('admins')}
+function applyPublicSettings(){
+ const d=db(),s=d.settings,r=document.documentElement;
+ r.style.setProperty('--amber',s.primary||'#FFB800');r.style.setProperty('--amber-deep',s.primary||'#E29A00');r.style.setProperty('--panel',s.header||'#10151C');r.style.setProperty('--panel-2',s.secondary||'#1A212B');
+ const logo=document.querySelector('.logo');if(logo){const old=logo.querySelector('.mark');if(s.logo){old.outerHTML=`<img class="mark" src="${s.logo}" style="object-fit:contain;border-radius:5px">`}}
+ const word=document.querySelector('.logo .word');if(word)word.innerHTML=esc2(s.storeName||'آمپرکالا');
+ const ey=document.querySelector('.hero-eyebrow');if(ey){const dot=ey.querySelector('.dot');ey.textContent='';if(dot)ey.appendChild(dot);ey.append(document.createTextNode(s.heroEyebrow||''));}
+ const h=document.querySelector('.hero-main h1');if(h)h.textContent=s.heroTitle||h.textContent;
+ const p=document.querySelector('.hero-main p');if(p)p.textContent=s.heroText||p.textContent;
+ const ul=document.querySelector('.utilitybar .u-left');if(ul){const spans=ul.querySelectorAll('span');if(spans[0])spans[0].textContent=s.utilityText||spans[0].textContent;if(spans[1])spans[1].innerHTML=`${esc2(s.supportText||'پشتیبانی فنی')}: <b>${esc2(s.phone||'')}</b>`;}
+ const cp=document.querySelector('.footer-bottom');if(cp)cp.textContent=s.footerCopyright||cp.textContent;
+ if(s.heroBanner){const hm=document.querySelector('.hero-main');if(hm)hm.style.backgroundImage=`linear-gradient(120deg,#0F1621cc,#1C2735aa),url("${s.heroBanner}")`;hm.style.backgroundSize='cover';hm.style.backgroundPosition='center'}
+}
+function show(tab){
+ const c=document.getElementById('adminContent');
+ document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+ const map={dashboard,products,categories,media,orders,customers,customize:settings,settings,pages,admins};
+ c.innerHTML=(map[tab]||dashboard)().replace('<div class="akv2">','<div class="akv2">');
+}
+function openAdminV2(){
+ if(sessionStorage.getItem(SESSION)!=='1'){window.AK.openLogin();return}
+ const modal=document.getElementById('adminModal');
+ modal.classList.add('show');
+ const panel=modal.querySelector('.admin-panel');
+ panel.classList.add('akv2');
+ const nav=panel.querySelector('.admin-nav');
+ nav.innerHTML=navBtn('dashboard','داشبورد','🏠')+navBtn('products','محصولات','📦')+navBtn('categories','دسته‌بندی‌ها','🗂️')+navBtn('media','رسانه‌ها','🖼️')+navBtn('orders','سفارش‌ها','📋')+navBtn('customers','مشتریان','👥')+navBtn('customize','شخصی‌سازی سایت','🎨')+navBtn('pages','محتوای صفحات','📝')+navBtn('admins','کاربران و مدیران','👤')+navBtn('settings','تنظیمات','⚙️');
+ show('dashboard');
+}
+function addMediaToProduct(id){const d=db(),p=d.products.find(x=>x.id===id);const el=document.getElementById('mediaPick');if(!p||!el?.value)return;const m=d.media.find(x=>String(x.id)===String(el.value));if(!m)return;p.images=p.images||[];if(!p.images.includes(m.data))p.images.push(m.data);if(!p.mainImage)p.mainImage=m.data;saveDB(d);productForm(id)}
+function setMainImage(id,i){const d=db(),p=d.products.find(x=>x.id===id);if(!p?.images?.[i])return;p.mainImage=p.images[i];saveDB(d);productForm(id)}
+function removeImage(id,i){const d=db(),p=d.products.find(x=>x.id===id);if(!p)return;const removed=p.images.splice(i,1)[0];if(p.mainImage===removed)p.mainImage=p.images[0]||'';saveDB(d);productForm(id)}
+function adminLoginV2(){const u=document.getElementById('adminUser').value.trim(),p=document.getElementById('adminPass').value;if(u==='admin'&&p==='admin123'){sessionStorage.setItem(SESSION,'1');document.getElementById('loginModal').classList.remove('show');openAdminV2()}else document.getElementById('loginError').textContent='نام کاربری یا رمز عبور اشتباه است.'}
+window.AK.adminLogin=adminLoginV2;
+window.AKV={show,openAdminV2,productForm,previewFiles,saveProductForm,removeImage,delProduct,uploadMedia,delMedia,addCat,delCat,orderForm,saveOrder,uploadSettingImage,saveSettings,savePage,addAdmin,delAdmin,addMediaToProduct,setMainImage};
+window.AK.openAdmin=openAdminV2;
+applyPublicSettings();
+})();
+</script>
+
+
+<style>
+/* ===== AMPERCALA CMS / WORDPRESS-LIKE CONTROL CENTER ===== */
+.cms-nav-group{margin:14px 0 6px;color:#7f8a98;font-size:10px;font-weight:800;padding:0 10px}
+.cms-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.cms-toolbar button{padding:9px 12px;border-radius:7px;background:#e9edf1;font-weight:700;font-size:11px}
+.cms-toolbar button.primary{background:var(--amber);color:#161000}
+.cms-page-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cms-box{background:#fff;border:1px solid var(--line);border-radius:9px;padding:15px}
+.cms-box h4{margin-bottom:8px}
+.cms-box p{font-size:11px;color:var(--ink-soft);line-height:1.8}
+.cms-box .cms-value{font-weight:800;font-size:14px;margin-top:7px}
+.cms-preview{border:1px dashed #cbd2da;border-radius:8px;padding:12px;background:#f8fafb}
+.cms-color{width:100%;height:40px;border:1px solid var(--line);border-radius:7px;padding:2px}
+.cms-img{width:70px;height:50px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+@media(max-width:720px){.cms-page-grid{grid-template-columns:1fr}}
+</style>
+<script>
+(function(){
+  const KEY='AK_CMS_V2';
+  const defaults={
+    site:{title:'آمپرکالا',tagline:'فروشگاه تخصصی برق صنعتی',logo:'',favicon:'',primary:'#FFB800',secondary:'#10151C',header:'#10151C',button:'#FFB800',text:'#161B22',bg:'#EEF0F3'},
+    home:{eyebrow:'مناسبتی — تجهیز پروژه‌های صنعتی',title:'هر آنچه برای تابلو، خط تولید و برق‌کشی صنعتی نیاز دارید',description:'بیش از ۱۲ هزار قلم کالای اورجینال با گارانتی اصالت و مشاوره فنی.',banner:'',showHero:true,showFlash:true,showBrands:true,showTrust:true},
+    contact:{phone:'021-9128XXXX',mobile:'',email:'info@example.com',whatsapp:'',instagram:'',telegram:'',address:''},
+    footer:{about:'مرجع تخصصی تأمین تجهیزات برق صنعتی',copyright:'© تمامی حقوق محفوظ است.'},
+    seo:{title:'آمپرکالا | فروشگاه تخصصی برق صنعتی',description:'خرید و استعلام تجهیزات برق صنعتی',keywords:'برق صنعتی، کابل، کلید، تابلو برق'}
+  };
+  function cmsLoad(){try{return Object.assign({},defaults,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){return defaults}}
+  function cmsSave(x){localStorage.setItem(KEY,JSON.stringify(x)); window.dispatchEvent(new Event('ak-cms-change'))}
+  window.AK_CMS={load:cmsLoad,save:cmsSave,defaults};
+
+  function input(id,label,value,type='text'){
+    return `<label style="display:grid;gap:5px;font-size:12px;color:var(--ink-soft)">${label}<input id="${id}" type="${type}" value="${String(value??'').replace(/"/g,'&quot;')}" style="padding:10px;border:1px solid var(--line);border-radius:7px;font-family:inherit"></label>`;
+  }
+  function color(id,label,value){return `<label style="display:grid;gap:5px;font-size:12px;color:var(--ink-soft)">${label}<input id="${id}" class="cms-color" type="color" value="${value||'#000000'}"></label>`}
+
+  window.AK_CMS.renderCustomizer=function(){
+    const d=cmsLoad(), c=document.getElementById('adminContent'); if(!c)return;
+    c.innerHTML=`
+      <h3 style="margin-bottom:14px">🎨 شخصی‌سازی کامل سایت</h3>
+      <div class="cms-toolbar"><button class="primary" onclick="AK_CMS.saveCustomizer()">ذخیره همه تغییرات</button><button onclick="AK_CMS.resetCustomizer()">بازگردانی تنظیمات اولیه</button></div>
+      <div class="cms-page-grid">
+        <div class="cms-box"><h4>🏪 هویت سایت</h4>
+          <div class="form-grid">
+            ${input('cms-title','نام فروشگاه',d.site.title)}
+            ${input('cms-tagline','شعار / عنوان کوتاه',d.site.tagline)}
+            ${input('cms-logo','آدرس لوگو',d.site.logo)}
+            ${input('cms-favicon','آدرس آیکون سایت',d.site.favicon)}
+          </div>
+        </div>
+        <div class="cms-box"><h4>🎨 رنگ‌ها</h4><div class="form-grid">
+          ${color('cms-primary','رنگ اصلی',d.site.primary)}
+          ${color('cms-secondary','رنگ دوم',d.site.secondary)}
+          ${color('cms-header','رنگ هدر',d.site.header)}
+          ${color('cms-button','رنگ دکمه‌ها',d.site.button)}
+          ${color('cms-text','رنگ متن',d.site.text)}
+          ${color('cms-bg','رنگ پس‌زمینه',d.site.bg)}
+        </div></div>
+        <div class="cms-box"><h4>📞 تماس و شبکه‌ها</h4><div class="form-grid">
+          ${input('cms-phone','تلفن',d.contact.phone)}
+          ${input('cms-mobile','موبایل',d.contact.mobile)}
+          ${input('cms-email','ایمیل',d.contact.email)}
+          ${input('cms-whatsapp','واتساپ',d.contact.whatsapp)}
+          ${input('cms-instagram','اینستاگرام',d.contact.instagram)}
+          ${input('cms-telegram','تلگرام',d.contact.telegram)}
+        </div>${input('cms-address','آدرس',d.contact.address)}</div>
+        <div class="cms-box" style="grid-column:1/-1"><h4>🏠 صفحه اصلی</h4><div class="form-grid">
+          ${input('cms-eyebrow','متن بالای عنوان',d.home.eyebrow)}
+          ${input('cms-home-title','عنوان اصلی',d.home.title)}
+          ${input('cms-home-desc','توضیحات',d.home.description)}
+          ${input('cms-banner','آدرس تصویر بنر',d.home.banner)}
+        </div><div style="display:flex;gap:16px;margin-top:12px;font-size:12px">
+          <label><input id="cms-flash" type="checkbox" ${d.home.showFlash?'checked':''}> پیشنهادهای ویژه</label>
+          <label><input id="cms-brands" type="checkbox" ${d.home.showBrands?'checked':''}> برندها</label>
+          <label><input id="cms-trust" type="checkbox" ${d.home.showTrust?'checked':''}> مزایا</label>
+        </div></div>
+        <div class="cms-box"><h4>🔎 سئو</h4>
+          ${input('cms-seo-title','عنوان SEO',d.seo.title)}
+          ${input('cms-seo-desc','توضیحات SEO',d.seo.description)}
+          ${input('cms-seo-key','کلمات کلیدی',d.seo.keywords)}
+        </div>
+        <div class="cms-box"><h4>🦶 فوتر</h4>
+          ${input('cms-about','معرفی فروشگاه',d.footer.about)}
+          ${input('cms-copy','کپی‌رایت',d.footer.copyright)}
+        </div>
+      </div>`;
+  };
+
+  window.AK_CMS.saveCustomizer=function(){
+    const d=cmsLoad();
+    const v=id=>document.getElementById(id)?.value??'';
+    Object.assign(d.site,{title:v('cms-title'),tagline:v('cms-tagline'),logo:v('cms-logo'),favicon:v('cms-favicon'),primary:v('cms-primary'),secondary:v('cms-secondary'),header:v('cms-header'),button:v('cms-button'),text:v('cms-text'),bg:v('cms-bg')});
+    Object.assign(d.contact,{phone:v('cms-phone'),mobile:v('cms-mobile'),email:v('cms-email'),whatsapp:v('cms-whatsapp'),instagram:v('cms-instagram'),telegram:v('cms-telegram'),address:v('cms-address')});
+    Object.assign(d.home,{eyebrow:v('cms-eyebrow'),title:v('cms-home-title'),description:v('cms-home-desc'),banner:v('cms-banner'),showFlash:!!document.getElementById('cms-flash')?.checked,showBrands:!!document.getElementById('cms-brands')?.checked,showTrust:!!document.getElementById('cms-trust')?.checked});
+    Object.assign(d.seo,{title:v('cms-seo-title'),description:v('cms-seo-desc'),keywords:v('cms-seo-key')});
+    Object.assign(d.footer,{about:v('cms-about'),copyright:v('cms-copy')});
+    cmsSave(d); applyCMS(); alert('همه تنظیمات سایت ذخیره شد.');
+  };
+  window.AK_CMS.resetCustomizer=function(){if(confirm('تنظیمات شخصی‌سازی بازنشانی شود؟')){cmsSave(JSON.parse(JSON.stringify(defaults)));applyCMS();renderCustomizer();}};
+  function applyCMS(){
+    const d=cmsLoad(), root=document.documentElement;
+    root.style.setProperty('--amber',d.site.primary); root.style.setProperty('--amber-deep',d.site.primary);
+    root.style.setProperty('--panel',d.site.header||d.site.secondary); root.style.setProperty('--ink',d.site.text); root.style.setProperty('--bg',d.site.bg);
+    const title=document.querySelector('.logo .word'); if(title) title.innerHTML=(d.site.title||'آمپر')+'<span></span>';
+    const span=document.querySelector('.logo .word span'); if(span) span.textContent='';
+    const h1=document.querySelector('.hero-main h1'); if(h1&&d.home.title)h1.textContent=d.home.title;
+    const p=document.querySelector('.hero-main p'); if(p&&d.home.description)p.textContent=d.home.description;
+    const ey=document.querySelector('.hero-eyebrow'); if(ey&&d.home.eyebrow)ey.innerHTML='<span class="dot"></span>'+d.home.eyebrow;
+    const support=document.querySelector('.u-left b'); if(support&&d.contact.phone)support.textContent=d.contact.phone;
+    if(d.site.logo){const mark=document.querySelector('.logo .mark'); if(mark){mark.outerHTML='<img class="mark" src="'+d.site.logo+'" alt="logo" style="object-fit:contain">';}}
+    if(d.home.banner){const hero=document.querySelector('.hero-main'); if(hero)hero.style.backgroundImage='linear-gradient(#10151ccc,#10151ccc),url("'+d.home.banner+'")';}
+    if(d.seo.title)document.title=d.seo.title;
+  }
+  document.addEventListener('DOMContentLoaded',applyCMS);
+  window.addEventListener('ak-cms-change',applyCMS);
+})();
+</script>
+
+
+<script>
+document.addEventListener('click',function(e){
+  const b=e.target.closest('.admin-nav button');
+  if(!b)return;
+  const t=(b.textContent||'').trim();
+  if(t.includes('شخصی')||t.includes('ظاهر')||t.includes('تنظیمات سایت')){
+    e.preventDefault(); e.stopImmediatePropagation();
+    AK_CMS.renderCustomizer();
+  }
+},true);
+</script>
+
+
+<style>
+/* ===== FINAL ADMIN + SHAPE EDITOR ===== */
+#akCleanChooser{position:fixed;inset:0;z-index:50000;background:rgba(7,12,18,.84);display:none;align-items:center;justify-content:center;padding:20px;direction:rtl}
+#akCleanChooser.show{display:flex}
+#akCleanChooser .card{width:min(680px,95vw);background:#fff;border-radius:16px;padding:24px;box-shadow:0 25px 90px #0008}
+#akCleanChooser h2{text-align:center;margin:0 0 18px}
+.ak-clean-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ak-clean-choice{border:1px solid #dfe3e8;background:#fafbfc;border-radius:12px;padding:24px;cursor:pointer;text-align:right}
+.ak-clean-choice:hover{border-color:var(--amber);transform:translateY(-2px)}
+.ak-clean-choice b{display:block;font-size:16px;margin-bottom:6px}
+#akCleanBar{position:fixed;top:0;right:0;left:0;z-index:49999;display:none;background:#10151c;color:#fff;padding:8px 12px;align-items:center;gap:7px;direction:rtl}
+#akCleanBar.show{display:flex}
+#akCleanBar button{padding:8px 11px;border:0;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:700}
+#akCleanBar .save{background:var(--amber);color:#161000}
+#akCleanBar .exit{background:#3b4653;color:#fff}
+.ak-clean-selected{outline:2px solid #249cff!important;outline-offset:3px}
+.ak-clean-text{outline:1px dashed #ffb800;outline-offset:3px}
+#akCleanTools{position:fixed;z-index:50001;display:none;background:#fff;border:1px solid #dfe3e8;border-radius:10px;padding:12px;width:310px;box-shadow:0 18px 55px #0005;direction:rtl}
+#akCleanTools.show{display:block}
+#akCleanTools input,#akCleanTools select{width:100%;box-sizing:border-box;padding:8px;margin:5px 0;border:1px solid #d8dde3;border-radius:6px;font-family:inherit}
+#akCleanTools button{padding:7px 9px;margin:3px;border:0;border-radius:6px;background:#eef1f4;cursor:pointer;font-family:inherit}
+.ak-shape-hit{cursor:pointer!important}
+@media(max-width:650px){.ak-clean-grid{grid-template-columns:1fr}}
+</style>
+
+<div id="akCleanChooser">
+  <div class="card">
+    <h2>انتخاب حالت مدیریت</h2>
+    <div class="ak-clean-grid">
+      <div class="ak-clean-choice" id="akCleanSupport"><b>🛠️ پشتیبانی و مدیریت</b><span>پنل کامل مدیریت</span></div>
+      <div class="ak-clean-choice" id="akCleanEdit"><b>🎨 ادیت سایت</b><span>ویرایش مستقیم متن، تصویر و شکل‌ها</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="akCleanBar">
+  <button class="save" id="akCleanSave">ذخیره</button>
+  <button id="akCleanUndo">بازگردانی</button>
+  <button class="exit" id="akCleanExit">خروج از ادیت</button>
+</div>
+
+<div id="akCleanTools">
+  <b>ویرایش عنصر</b>
+  <input id="akCleanText" placeholder="متن عنصر (برای عناصر متنی)">
+  <input id="akCleanBgUrl" placeholder="آدرس تصویر">
+  <input id="akCleanFile" type="file" accept="image/*">
+  <button id="akCleanApplyText">اعمال متن</button>
+  <button id="akCleanApplyImage">اعمال تصویر</button>
+  <button id="akCleanHideEl">مخفی/نمایش</button>
+  <button id="akCleanDelete">حذف شکل/عنصر</button>
+</div>
+
+<script>
+(function(){
+  const SESSION_KEY='AK_ADMIN_SESSION_V6';
+  const STORE_KEY='AK_CLEAN_VISUAL_HTML_V2';
+  const chooser=document.getElementById('akCleanChooser');
+  const bar=document.getElementById('akCleanBar');
+  const tools=document.getElementById('akCleanTools');
+  let editMode=false,selected=null,originalHTML='';
+
+  function closeAdminLayers(){
+    document.getElementById('loginModal')?.classList.remove('show');
+    document.getElementById('adminModal')?.classList.remove('show');
+  }
+  function showChooser(){
+    closeAdminLayers();
+    chooser?.classList.add('show');
+  }
+  function closeChooser(){chooser?.classList.remove('show')}
+
+  // ---- Reliable management routing ----
+  if(window.AK){
+    window.AK.adminLogin=function(){
+      const u=(document.getElementById('adminUser')?.value||'').trim();
+      const p=document.getElementById('adminPass')?.value||'';
+      const err=document.getElementById('loginError');
+      if(u==='admin'&&p==='admin123'){
+        sessionStorage.setItem(SESSION_KEY,'1');
+        sessionStorage.setItem('amperkala_admin_session','1');
+        if(err)err.textContent='';
+        showChooser();
+      }else if(err)err.textContent='نام کاربری یا رمز عبور اشتباه است.';
+    };
+
+    window.AK.openAdmin=function(){
+      if(sessionStorage.getItem(SESSION_KEY)!=='1'){
+        document.getElementById('loginModal')?.classList.add('show'); return;
+      }
+      closeChooser();
+      if(typeof window.openAdminV2==='function') window.openAdminV2();
+      else if(window.AKV&&typeof window.AKV.openAdminV2==='function') window.AKV.openAdminV2();
+      else {
+        const m=document.getElementById('adminModal');
+        if(m)m.classList.add('show');
+      }
+    };
+  }
+
+  document.getElementById('akCleanSupport').onclick=function(){
+    closeChooser();
+    if(typeof window.openAdminV2==='function') window.openAdminV2();
+    else if(window.AKV&&typeof window.AKV.openAdminV2==='function') window.AKV.openAdminV2();
+    else document.getElementById('adminModal')?.classList.add('show');
+  };
+
+  // Robustly wire buttons generated inside the admin panel.
+  document.addEventListener('click',function(e){
+    if(editMode)return;
+    const btn=e.target.closest('#adminModal button');
+    if(!btn)return;
+    // Let existing inline handlers run. If they do not exist, route common V2 nav buttons.
+    const nav=btn.closest('.admin-nav');
+    if(nav && btn.dataset.tab && window.AKV && typeof window.AKV.show==='function'){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      window.AKV.show(btn.dataset.tab);
+    }
+  },true);
+
+  function isUI(el){return !!el?.closest('#akCleanBar,#akCleanTools,#akCleanChooser,.modal-backdrop')}
+
+  function candidate(el){
+    if(!el||isUI(el))return null;
+    let cur=el;
+    // Prefer the nearest meaningful visual shape/card/container.
+    for(let i=0;i<5&&cur&&cur!==document.body;i++,cur=cur.parentElement){
+      const tag=cur.tagName;
+      if(['SCRIPT','STYLE','BUTTON','INPUT','SELECT','TEXTAREA','OPTION'].includes(tag)) continue;
+      const r=cur.getBoundingClientRect();
+      if(r.width<8||r.height<8) continue;
+      const cs=getComputedStyle(cur);
+      const bg=cs.backgroundImage;
+      const visual =
+        ['IMG','SVG','PATH','FIGURE','ARTICLE'].includes(tag) ||
+        bg&&bg!=='none' ||
+        cs.borderRadius!=='0px' ||
+        cs.boxShadow!=='none' ||
+        /card|slide|slider|carousel|banner|hero|shape|tile|box|item|brand|trust/i.test(cur.className||'');
+      if(visual)return cur;
+    }
+    return el;
+  }
+
+  function clearSelection(){
+    document.querySelectorAll('.ak-clean-selected').forEach(x=>x.classList.remove('ak-clean-selected'));
+    selected=null;
+  }
+
+  function selectElement(el,x,y){
+    el=candidate(el); if(!el)return;
+    clearSelection(); selected=el; el.classList.add('ak-clean-selected');
+
+    const text=el.children.length===0 ? (el.textContent||'').trim() : '';
+    document.getElementById('akCleanText').value=text;
+    if(el.tagName==='IMG') document.getElementById('akCleanBgUrl').value=el.src||'';
+    else{
+      const m=(getComputedStyle(el).backgroundImage||'').match(/url\\(["']?(.*?)["']?\\)/);
+      document.getElementById('akCleanBgUrl').value=m?m[1]:'';
+    }
+
+    const w=310,h=230;
+    tools.style.left=Math.min(Math.max(8,x+8),innerWidth-w-8)+'px';
+    tools.style.top=Math.min(Math.max(45,y+8),innerHeight-h-8)+'px';
+    tools.classList.add('show');
+  }
+
+  document.addEventListener('click',function(e){
+    if(!editMode||isUI(e.target))return;
+    // Never steal clicks from actual links/buttons/forms.
+    if(e.target.closest('a,button,input,select,textarea'))return;
+    e.preventDefault(); e.stopPropagation();
+    selectElement(e.target,e.clientX,e.clientY);
+  },true);
+
+  document.addEventListener('dblclick',function(e){
+    if(!editMode||isUI(e.target))return;
+    const el=e.target.closest('[contenteditable="true"]');
+    if(el){e.preventDefault();el.focus();}
+  },true);
+
+  document.getElementById('akCleanApplyText').onclick=function(){
+    if(!selected)return;
+    const v=document.getElementById('akCleanText').value;
+    if(selected.children.length===0) selected.textContent=v;
+    else selected.setAttribute('data-ak-edit-text',v);
+  };
+
+  document.getElementById('akCleanApplyImage').onclick=function(){
+    if(!selected)return;
+    const url=document.getElementById('akCleanBgUrl').value.trim();
+    if(!url)return;
+    if(selected.tagName==='IMG')selected.src=url;
+    else{
+      selected.style.backgroundImage='url("'+url.replace(/"/g,'&quot;')+'")';
+      selected.style.backgroundSize='cover';
+      selected.style.backgroundPosition='center';
+    }
+    tools.classList.remove('show');
+  };
+
+  document.getElementById('akCleanFile').onchange=function(e){
+    const f=e.target.files?.[0]; if(!f||!selected)return;
+    const r=new FileReader();
+    r.onload=function(){
+      if(selected.tagName==='IMG')selected.src=r.result;
+      else{
+        selected.style.backgroundImage='url("'+r.result+'")';
+        selected.style.backgroundSize='cover';
+        selected.style.backgroundPosition='center';
+      }
+      tools.classList.remove('show');
+    };
+    r.readAsDataURL(f);
+  };
+
+  document.getElementById('akCleanHideEl').onclick=function(){
+    if(selected)selected.style.display=selected.style.display==='none'?'':'none';
+  };
+
+  document.getElementById('akCleanDelete').onclick=function(){
+    if(!selected||!confirm('این عنصر حذف شود؟'))return;
+    selected.remove(); selected=null; tools.classList.remove('show');
+  };
+
+  document.getElementById('akCleanSave').onclick=function(){
+    const main=document.querySelector('main');
+    if(main)localStorage.setItem(STORE_KEY,main.innerHTML);
+    alert('تغییرات ذخیره شد.');
+  };
+
+  document.getElementById('akCleanUndo').onclick=function(){
+    const main=document.querySelector('main');
+    if(main&&originalHTML){
+      main.innerHTML=originalHTML;
+      clearSelection(); tools.classList.remove('show');
+    }
+  };
+
+  document.getElementById('akCleanExit').onclick=function(){
+    editMode=false; bar.classList.remove('show'); tools.classList.remove('show'); clearSelection();
+    document.body.classList.remove('ak-clean-editing');
+  };
+
+  document.getElementById('akCleanEdit').onclick=function(){
+    closeChooser(); editMode=true;
+    const main=document.querySelector('main');
+    if(main){
+      const saved=localStorage.getItem(STORE_KEY);
+      if(saved)main.innerHTML=saved;
+      originalHTML=main.innerHTML;
+      // Make all leaf text editable without blocking shape selection.
+      main.querySelectorAll('*').forEach(el=>{
+        if(isUI(el)||['SCRIPT','STYLE','BUTTON','INPUT','SELECT','TEXTAREA'].includes(el.tagName))return;
+        if(el.children.length===0&&(el.textContent||'').trim())el.setAttribute('contenteditable','true');
+      });
+    }
+    bar.classList.add('show');
+    window.scrollTo(0,0);
+  };
+
+  // Footer/login button: authenticated users get chooser, others get login.
+  document.addEventListener('click',function(e){
+    const b=e.target.closest('[onclick*="openLogin"],.admin-open,[data-admin-open]');
+    if(!b)return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if(sessionStorage.getItem(SESSION_KEY)==='1')showChooser();
+    else document.getElementById('loginModal')?.classList.add('show');
+  },true);
+})();
+</script>
+</html>
