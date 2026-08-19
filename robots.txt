@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://amirmb7930-rgb.github.io/ziyaei-automation/sitemap.xml
