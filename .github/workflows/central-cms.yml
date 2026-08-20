@@ -25,7 +25,6 @@ jobs:
               if(!window.AK_CMS?.login){if(e)e.textContent='نسخه مرکزی هنوز بارگذاری نشده؛ صفحه را یک‌بار تازه‌سازی کنید.';return;}
               window.AK_CMS.login(u,p).then(function(){
                 sessionStorage.setItem('ziayi_admin_session','1');
-                sessionStorage.setItem('ZIYAI_SUPABASE_AUTH','1');
                 if(e)e.textContent='';
                 document.getElementById('loginModal')?.classList.remove('show');
                 if(typeof window.showChooser==='function')window.showChooser();
@@ -35,12 +34,14 @@ jobs:
             }
             function centralSave(){
               if(!window.AK_CMS?.save){alert('نسخه مرکزی هنوز آماده نشده؛ صفحه را یک‌بار تازه‌سازی کنید.');return;}
-              const d=(typeof window.db==='function'?window.db():null);
-              const s=(d&&d.settings)||{};
+              const x=window.AK_CMS.load();
               const v=id=>document.getElementById(id)?.value||'';
-              Object.assign(s,{storeName:v('sname'),email:v('semail'),phone:v('sphone'),whatsapp:v('swa'),instagram:v('sins'),address:v('saddr'),primary:v('sprimary'),secondary:v('ssecondary'),button:v('sbutton'),header:v('sheader'),heroTitle:v('stitle'),heroText:v('stext'),about:v('sabout'),utilityText:v('sutility'),supportText:v('ssupport'),footerCopyright:v('scopyright')});
-              window.AK_CMS.save(window.AK_CMS.toCMS?s:window.AK_CMS.load()).then(function(){
-                if(typeof window.saveDB==='function'&&d){d.settings=s;window.saveDB(d);}
+              x.site=x.site||{}; x.home=x.home||{}; x.contact=x.contact||{}; x.footer=x.footer||{};
+              Object.assign(x.site,{title:v('sname'),primary:v('sprimary'),secondary:v('ssecondary'),button:v('sbutton'),header:v('sheader')});
+              Object.assign(x.home,{title:v('stitle'),description:v('stext'),eyebrow:x.home.eyebrow||''});
+              Object.assign(x.contact,{email:v('semail'),phone:v('sphone'),whatsapp:v('swa'),instagram:v('sins'),address:v('saddr')});
+              Object.assign(x.footer,{about:v('sabout'),utility:v('sutility'),support:v('ssupport'),copyright:v('scopyright')});
+              window.AK_CMS.save(x).then(function(){
                 if(typeof window.applyPublicSettings==='function')window.applyPublicSettings();
                 alert('تنظیمات ذخیره شد و برای همه کاربران منتشر شد.');
               }).catch(function(x){alert(x.message||'ذخیره انجام نشد. ابتدا با حساب مدیر وارد شوید.');});
@@ -61,5 +62,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add ziayi-automation-v8.html
           git diff --cached --quiet && exit 0
-          git commit -m '[central-cms] Fix admin login and public settings sync'
+          git commit -m '[central-cms] Correct settings mapping'
           git push
