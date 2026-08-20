@@ -1598,7 +1598,7 @@ document.addEventListener('click',function(e){
     const nav=document.querySelector('#adminModal .admin-nav');
     if(!nav || nav.querySelector('[data-tab="site-editor"]'))return;
     const b=document.createElement('button');
-    b.type='button'; b.dataset.tab='site-editor'; b.innerHTML='🎨 ویرایش مستقیم سایت';
+    b.type='button'; b.className='central-site-editor'; b.innerHTML='🎨 ویرایش مستقیم سایت';
     b.onclick=function(){
       document.getElementById('adminModal')?.classList.remove('show');
       document.getElementById('akCleanChooser')?.classList.remove('show');
