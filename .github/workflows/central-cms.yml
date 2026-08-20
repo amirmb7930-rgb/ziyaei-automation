@@ -1,0 +1,81 @@
+name: Apply central CMS integration
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: ${{ !startsWith(github.event.head_commit.message, '[central-cms]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch site
+        run: |
+          cat > /tmp/patch.py <<'PY'
+          import re,pathlib
+          p=pathlib.Path('ziayi-automation-v8.html')
+          s=p.read_text(encoding='utf-8')
+          new_block='''  const KEY='ZIYAI_CMS_V2';
+            const SUPABASE_URL='https://ixawrychyhcbmeiwnvwj.supabase.co';
+            const SUPABASE_KEY='sb_publishable_7byeGAu4439JVXNBzvFfpA_RyZb78Jd';
+            const defaults={
+              site:{title:'اتوماسیون صنعتی ضیائی',tagline:'مرجع تخصصی اتوماسیون و تجهیزات برق صنعتی',logo:'',favicon:'',primary:'#D71920',secondary:'#10151C',header:'#10151C',button:'#D71920',text:'#161B22',bg:'#EEF0F3'},
+              home:{eyebrow:'اتوماسیون و برق صنعتی — تأمین پروژه و مشاوره فنی',title:'هر آنچه برای تابلو، خط تولید و برق‌کشی صنعتی نیاز دارید',description:'بیش از ۱۲ هزار قلم کالای اورجینال با گارانتی اصالت و مشاوره فنی.',banner:'',showHero:true,showFlash:true,showBrands:true,showTrust:true},
+              contact:{phone:'021-9128XXXX',mobile:'',email:'info@example.com',whatsapp:'',instagram:'',telegram:'',address:''},
+              footer:{about:'مرجع تخصصی تأمین تجهیزات برق صنعتی',copyright:'© تمامی حقوق محفوظ است.'},
+              seo:{title:'اتوماسیون صنعتی ضیائی | فروشگاه تخصصی برق صنعتی',description:'خرید و استعلام تجهیزات برق صنعتی',keywords:'برق صنعتی، کابل، کلید، تابلو برق'}
+            };
+            let cmsState=null, cmsLoaded=false, cmsLoading=null;
+            function merge(a,b){const o=Array.isArray(a)?a.slice():Object.assign({},a); if(!b||typeof b!=='object')return o; Object.keys(b).forEach(k=>{o[k]=(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k]))?merge(o[k]||{},b[k]):b[k]}); return o}
+            function localLoad(){try{return merge(defaults,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){return merge(defaults,{})}}
+            function cmsLoad(){return cmsState||localLoad()}
+            async function fetchCMS(){
+              if(cmsLoading)return cmsLoading;
+              cmsLoading=(async()=>{
+                try{
+                  const r=await fetch(SUPABASE_URL+'/rest/v1/site_settings?select=data&key=eq.main&limit=1',{headers:{apikey:SUPABASE_KEY}});
+                  if(r.ok){const rows=await r.json(); if(rows[0]?.data){cmsState=merge(defaults,rows[0].data); localStorage.setItem(KEY,JSON.stringify(cmsState)); cmsLoaded=true; applyCMS(); return cmsState;}}
+                }catch(e){console.warn('Supabase CMS load failed',e)}
+                cmsState=localLoad(); cmsLoaded=true; applyCMS(); return cmsState;
+              })();
+              return cmsLoading;
+            }
+            async function cmsSave(x){
+              cmsState=merge(defaults,x); localStorage.setItem(KEY,JSON.stringify(cmsState));
+              try{
+                const token=sessionStorage.getItem('ZIYAI_SUPABASE_ACCESS_TOKEN');
+                if(!token)throw new Error('AUTH_REQUIRED');
+                const r=await fetch(SUPABASE_URL+'/rest/v1/site_settings?on_conflict=key',{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({key:'main',data:cmsState,updated_at:new Date().toISOString()})});
+                if(!r.ok)throw new Error('SAVE_FAILED_'+r.status);
+                window.dispatchEvent(new Event('ak-cms-change')); return cmsState;
+              }catch(e){console.error(e); throw e;}
+            }
+            async function cmsReset(){return cmsSave(JSON.parse(JSON.stringify(defaults)))}
+            async function supabaseLogin(email,password){
+              const r=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+              const data=await r.json(); if(!r.ok)throw new Error(data.error_description||data.msg||'ورود ناموفق بود');
+              sessionStorage.setItem('ZIYAI_SUPABASE_ACCESS_TOKEN',data.access_token); if(data.refresh_token)sessionStorage.setItem('ZIYAI_SUPABASE_REFRESH_TOKEN',data.refresh_token); return data;
+            }
+            function supabaseLogout(){sessionStorage.removeItem('ZIYAI_SUPABASE_ACCESS_TOKEN');sessionStorage.removeItem('ZIYAI_SUPABASE_REFRESH_TOKEN')}
+            window.AK_CMS={load:cmsLoad,save:cmsSave,reset:cmsReset,defaults,fetch:fetchCMS,login:supabaseLogin,logout:supabaseLogout,isLoaded:()=>cmsLoaded};
+            fetchCMS();
+          
+          '''
+          pat=r"  const KEY='ZIYAI_CMS_V2';.*?  function input\(id,label,value,type='text'\)\{"
+          s,n=re.subn(pat,new_block+"  function input(id,label,value,type='text'){",s,count=1,flags=re.S)
+          if n!=1: raise SystemExit('CMS block not found')
+          s=s.replace("<label>نام کاربری<input id=\"adminUser\"","<label>ایمیل مدیر<input id=\"adminUser\"")
+          s=s.replace("if(u==='admin'&&p==='admin123'){sessionStorage.setItem(SESSION,'1');document.getElementById('loginModal').classList.remove('show');openAdminV2()}else document.getElementById('loginError').textContent='نام کاربری یا رمز عبور اشتباه است.'","AK_CMS.login(u,p).then(()=>{sessionStorage.setItem(SESSION,'1');document.getElementById('loginModal').classList.remove('show');openAdminV2()}).catch(e=>document.getElementById('loginError').textContent=e.message||'ورود ناموفق بود.')")
+          s=s.replace('نسخه فعلی برای تست: <b>admin</b> / <b>admin123</b>. برای نسخه واقعی باید احراز هویت سروری جایگزین شود.','ورود مدیریت با حساب امن Supabase انجام می‌شود.')
+          s=s.replace('این نسخه یک پروتوتایپ قابل اجرا در مرورگر است و داده‌ها را در localStorage نگه می‌دارد. برای استفاده واقعی، احراز هویت و دیتابیس باید روی سرور منتقل شود.','تنظیمات سایت از دیتابیس مرکزی خوانده می‌شود و تغییرات مدیر برای همه کاربران اعمال خواهد شد.')
+          s=s.replace('این نسخه همچنان یک پنل مستقل داخل HTML است و داده‌ها را در localStorage مرورگر نگه می‌دارد. برای سایت واقعی، احراز هویت، فایل‌ها و دیتابیس باید سمت سرور پیاده‌سازی شوند.','تنظیمات عمومی سایت به‌صورت مرکزی در Supabase نگهداری می‌شود.')
+          p.write_text(s,encoding='utf-8')
+          PY
+          python /tmp/patch.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ziayi-automation-v8.html
+          git diff --cached --quiet && exit 0
+          git commit -m '[central-cms] Connect CMS settings to Supabase'
+          git push
