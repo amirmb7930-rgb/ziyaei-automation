@@ -620,9 +620,9 @@
 <!-- Admin login -->
 <div class="modal-backdrop" id="loginModal">
  <div class="modal" style="max-width:420px"><div class="modal-head"><h3>ورود مدیریت</h3><button class="modal-close" onclick="document.getElementById('loginModal').classList.remove('show')">×</button></div>
- <div class="modal-body"><div class="form-grid" style="grid-template-columns:1fr"><label>نام کاربری<input id="adminUser" autocomplete="username"></label><label>رمز عبور<input id="adminPass" type="password" autocomplete="current-password"></label></div>
+ <div class="modal-body"><div class="form-grid" style="grid-template-columns:1fr"><label>ایمیل مدیر<input id="adminUser" autocomplete="username"></label><label>رمز عبور<input id="adminPass" type="password" autocomplete="current-password"></label></div>
  <div id="loginError" style="color:#c52639;font-size:12px;margin:10px 0"></div><button class="btn-wide" style="background:var(--amber)" onclick="AK.adminLogin()">ورود</button>
- <div class="notice" style="margin-top:12px">نسخه فعلی برای تست: <b>admin</b> / <b>admin123</b>. برای نسخه واقعی باید احراز هویت سروری جایگزین شود.</div></div></div>
+ <div class="notice" style="margin-top:12px">ورود مدیریت با حساب امن Supabase انجام می‌شود.</div></div></div>
 </div>
 
 <!-- Admin -->
@@ -814,7 +814,7 @@ function showAdmin(tab){
 function dashboardHTML(){
  const orders=state.orders.length, products=state.products.length, low=state.products.filter(p=>p.stock<=2).length;
  return `<div class="admin-cards"><div class="admin-card">محصولات<br><b>${products}</b></div><div class="admin-card">درخواست‌ها<br><b>${orders}</b></div><div class="admin-card">موجودی کم/ناموجود<br><b>${low}</b></div></div>
- <div class="notice">این نسخه یک پروتوتایپ قابل اجرا در مرورگر است و داده‌ها را در localStorage نگه می‌دارد. برای استفاده واقعی، احراز هویت و دیتابیس باید روی سرور منتقل شود.</div>
+ <div class="notice">تنظیمات سایت از دیتابیس مرکزی خوانده می‌شود و تغییرات مدیر برای همه کاربران اعمال خواهد شد.</div>
  <h3>آخرین درخواست‌ها</h3>${ordersTable(state.orders.slice(0,5))}`;
 }
 function productsHTML(){
@@ -960,7 +960,7 @@ function dashboard(){
   <div class="v2-stat">مشتریان<b>${d.customers.length}</b></div>
  </div>
  <div class="v2-card"><b>آخرین درخواست‌ها</b><div style="overflow:auto;margin-top:10px">${ordersTable2(d.orders.slice(0,8))}</div></div>
- <div class="v2-card"><b>وضعیت نسخه</b><p class="mini-note">این نسخه همچنان یک پنل مستقل داخل HTML است و داده‌ها را در localStorage مرورگر نگه می‌دارد. برای سایت واقعی، احراز هویت، فایل‌ها و دیتابیس باید سمت سرور پیاده‌سازی شوند.</p></div>`});
+ <div class="v2-card"><b>وضعیت نسخه</b><p class="mini-note">تنظیمات عمومی سایت به‌صورت مرکزی در Supabase نگهداری می‌شود.</p></div>`});
 }
 function products(){
  const d=db();
@@ -1088,7 +1088,7 @@ function openAdminV2(){
 function addMediaToProduct(id){const d=db(),p=d.products.find(x=>x.id===id);const el=document.getElementById('mediaPick');if(!p||!el?.value)return;const m=d.media.find(x=>String(x.id)===String(el.value));if(!m)return;p.images=p.images||[];if(!p.images.includes(m.data))p.images.push(m.data);if(!p.mainImage)p.mainImage=m.data;saveDB(d);productForm(id)}
 function setMainImage(id,i){const d=db(),p=d.products.find(x=>x.id===id);if(!p?.images?.[i])return;p.mainImage=p.images[i];saveDB(d);productForm(id)}
 function removeImage(id,i){const d=db(),p=d.products.find(x=>x.id===id);if(!p)return;const removed=p.images.splice(i,1)[0];if(p.mainImage===removed)p.mainImage=p.images[0]||'';saveDB(d);productForm(id)}
-function adminLoginV2(){const u=document.getElementById('adminUser').value.trim(),p=document.getElementById('adminPass').value;if(u==='admin'&&p==='admin123'){sessionStorage.setItem(SESSION,'1');document.getElementById('loginModal').classList.remove('show');openAdminV2()}else document.getElementById('loginError').textContent='نام کاربری یا رمز عبور اشتباه است.'}
+function adminLoginV2(){const u=document.getElementById('adminUser').value.trim(),p=document.getElementById('adminPass').value;AK_CMS.login(u,p).then(()=>{sessionStorage.setItem(SESSION,'1');document.getElementById('loginModal').classList.remove('show');openAdminV2()}).catch(e=>document.getElementById('loginError').textContent=e.message||'ورود ناموفق بود.')}
 window.AK.adminLogin=adminLoginV2;
 window.AKV={show,openAdminV2,productForm,previewFiles,saveProductForm,removeImage,delProduct,uploadMedia,delMedia,addCat,delCat,orderForm,saveOrder,uploadSettingImage,saveSettings,savePage,addAdmin,delAdmin,addMediaToProduct,setMainImage};
 window.AK.openAdmin=openAdminV2;
@@ -1116,16 +1116,49 @@ applyPublicSettings();
 <script>
 (function(){
   const KEY='ZIYAI_CMS_V2';
+  const SUPABASE_URL='https://ixawrychyhcbmeiwnvwj.supabase.co';
+  const SUPABASE_KEY='sb_publishable_7byeGAu4439JVXNBzvFfpA_RyZb78Jd';
   const defaults={
-    site:{title:'اتوماسیون صنعتی ضیائی',tagline:'مرجع تخصصی اتوماسیون و تجهیزات برق صنعتی',logo:'',favicon:'',primary:'#FFB800',secondary:'#10151C',header:'#10151C',button:'#FFB800',text:'#161B22',bg:'#EEF0F3'},
+    site:{title:'اتوماسیون صنعتی ضیائی',tagline:'مرجع تخصصی اتوماسیون و تجهیزات برق صنعتی',logo:'',favicon:'',primary:'#D71920',secondary:'#10151C',header:'#10151C',button:'#D71920',text:'#161B22',bg:'#EEF0F3'},
     home:{eyebrow:'اتوماسیون و برق صنعتی — تأمین پروژه و مشاوره فنی',title:'هر آنچه برای تابلو، خط تولید و برق‌کشی صنعتی نیاز دارید',description:'بیش از ۱۲ هزار قلم کالای اورجینال با گارانتی اصالت و مشاوره فنی.',banner:'',showHero:true,showFlash:true,showBrands:true,showTrust:true},
     contact:{phone:'021-9128XXXX',mobile:'',email:'info@example.com',whatsapp:'',instagram:'',telegram:'',address:''},
     footer:{about:'مرجع تخصصی تأمین تجهیزات برق صنعتی',copyright:'© تمامی حقوق محفوظ است.'},
     seo:{title:'اتوماسیون صنعتی ضیائی | فروشگاه تخصصی برق صنعتی',description:'خرید و استعلام تجهیزات برق صنعتی',keywords:'برق صنعتی، کابل، کلید، تابلو برق'}
   };
-  function cmsLoad(){try{return Object.assign({},defaults,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){return defaults}}
-  function cmsSave(x){localStorage.setItem(KEY,JSON.stringify(x)); window.dispatchEvent(new Event('ak-cms-change'))}
-  window.AK_CMS={load:cmsLoad,save:cmsSave,defaults};
+  let cmsState=null, cmsLoaded=false, cmsLoading=null;
+  function merge(a,b){const o=Array.isArray(a)?a.slice():Object.assign({},a); if(!b||typeof b!=='object')return o; Object.keys(b).forEach(k=>{o[k]=(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k]))?merge(o[k]||{},b[k]):b[k]}); return o}
+  function localLoad(){try{return merge(defaults,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){return merge(defaults,{})}}
+  function cmsLoad(){return cmsState||localLoad()}
+  async function fetchCMS(){
+    if(cmsLoading)return cmsLoading;
+    cmsLoading=(async()=>{
+      try{
+        const r=await fetch(SUPABASE_URL+'/rest/v1/site_settings?select=data&key=eq.main&limit=1',{headers:{apikey:SUPABASE_KEY}});
+        if(r.ok){const rows=await r.json(); if(rows[0]?.data){cmsState=merge(defaults,rows[0].data); localStorage.setItem(KEY,JSON.stringify(cmsState)); cmsLoaded=true; applyCMS(); return cmsState;}}
+      }catch(e){console.warn('Supabase CMS load failed',e)}
+      cmsState=localLoad(); cmsLoaded=true; applyCMS(); return cmsState;
+    })();
+    return cmsLoading;
+  }
+  async function cmsSave(x){
+    cmsState=merge(defaults,x); localStorage.setItem(KEY,JSON.stringify(cmsState));
+    try{
+      const token=sessionStorage.getItem('ZIYAI_SUPABASE_ACCESS_TOKEN');
+      if(!token)throw new Error('AUTH_REQUIRED');
+      const r=await fetch(SUPABASE_URL+'/rest/v1/site_settings?on_conflict=key',{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({key:'main',data:cmsState,updated_at:new Date().toISOString()})});
+      if(!r.ok)throw new Error('SAVE_FAILED_'+r.status);
+      window.dispatchEvent(new Event('ak-cms-change')); return cmsState;
+    }catch(e){console.error(e); throw e;}
+  }
+  async function cmsReset(){return cmsSave(JSON.parse(JSON.stringify(defaults)))}
+  async function supabaseLogin(email,password){
+    const r=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+    const data=await r.json(); if(!r.ok)throw new Error(data.error_description||data.msg||'ورود ناموفق بود');
+    sessionStorage.setItem('ZIYAI_SUPABASE_ACCESS_TOKEN',data.access_token); if(data.refresh_token)sessionStorage.setItem('ZIYAI_SUPABASE_REFRESH_TOKEN',data.refresh_token); return data;
+  }
+  function supabaseLogout(){sessionStorage.removeItem('ZIYAI_SUPABASE_ACCESS_TOKEN');sessionStorage.removeItem('ZIYAI_SUPABASE_REFRESH_TOKEN')}
+  window.AK_CMS={load:cmsLoad,save:cmsSave,reset:cmsReset,defaults,fetch:fetchCMS,login:supabaseLogin,logout:supabaseLogout,isLoaded:()=>cmsLoaded};
+  fetchCMS();
 
   function input(id,label,value,type='text'){
     return `<label style="display:grid;gap:5px;font-size:12px;color:var(--ink-soft)">${label}<input id="${id}" type="${type}" value="${String(value??'').replace(/"/g,'&quot;')}" style="padding:10px;border:1px solid var(--line);border-radius:7px;font-family:inherit"></label>`;
