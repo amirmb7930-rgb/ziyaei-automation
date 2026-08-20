@@ -16,68 +16,16 @@ jobs:
           from pathlib import Path
           p=Path('ziayi-automation-v8.html')
           s=p.read_text(encoding='utf-8')
-          bridge=r'''<script>
-          (function(){
-            function centralLogin(){
-              const u=(document.getElementById('adminUser')?.value||'').trim();
-              const p=(document.getElementById('adminPass')?.value||'');
-              const e=document.getElementById('loginError');
-              if(!window.AK_CMS?.login){if(e)e.textContent='نسخه مرکزی هنوز بارگذاری نشده؛ صفحه را یک‌بار تازه‌سازی کنید.';return;}
-              window.AK_CMS.login(u,p).then(function(){
-                sessionStorage.setItem('ziayi_admin_session','1');
-                if(e)e.textContent='';
-                document.getElementById('loginModal')?.classList.remove('show');
-                if(typeof window.showChooser==='function')window.showChooser();
-                else if(typeof window.openAdminV2==='function')window.openAdminV2();
-                else if(window.AKV?.openAdminV2)window.AKV.openAdminV2();
-              }).catch(function(x){if(e)e.textContent=x.message||'ایمیل یا رمز عبور صحیح نیست.';});
-            }
-            function centralSave(){
-              if(!window.AK_CMS?.save){alert('نسخه مرکزی هنوز آماده نشده؛ صفحه را یک‌بار تازه‌سازی کنید.');return;}
-              const x=window.AK_CMS.load();
-              const v=id=>document.getElementById(id)?.value||'';
-              x.site=x.site||{}; x.home=x.home||{}; x.contact=x.contact||{}; x.footer=x.footer||{};
-              Object.assign(x.site,{title:v('sname'),primary:v('sprimary'),secondary:v('ssecondary'),button:v('sbutton'),header:v('sheader')});
-              Object.assign(x.home,{title:v('stitle'),description:v('stext'),eyebrow:x.home.eyebrow||''});
-              Object.assign(x.contact,{email:v('semail'),phone:v('sphone'),whatsapp:v('swa'),instagram:v('sins'),address:v('saddr')});
-              Object.assign(x.footer,{about:v('sabout'),utility:v('sutility'),support:v('ssupport'),copyright:v('scopyright')});
-              window.AK_CMS.save(x).then(function(){
-                if(typeof window.applyPublicSettings==='function')window.applyPublicSettings();
-                alert('تنظیمات ذخیره شد و برای همه کاربران منتشر شد.');
-              }).catch(function(x){alert(x.message||'ذخیره انجام نشد. ابتدا با حساب مدیر وارد شوید.');});
-            }
-            function addEditorButton(){
-              const nav=document.querySelector('#adminModal .admin-nav');
-              if(!nav || nav.querySelector('[data-tab="site-editor"]'))return;
-              const b=document.createElement('button');
-              b.type='button'; b.dataset.tab='site-editor'; b.innerHTML='🎨 ویرایش مستقیم سایت';
-              b.onclick=function(){
-                document.getElementById('adminModal')?.classList.remove('show');
-                document.getElementById('akCleanChooser')?.classList.remove('show');
-                const edit=document.getElementById('akCleanEdit');
-                if(edit) edit.click();
-              };
-              nav.appendChild(b);
-            }
-            function install(){
-              if(window.AK)window.AK.adminLogin=centralLogin;
-              if(window.AKV)window.AKV.saveSettings=centralSave;
-              if(window.AK_CMS?.fetch)window.AK_CMS.fetch();
-              const obs=new MutationObserver(addEditorButton);
-              const nav=document.querySelector('#adminModal .admin-nav');
-              if(nav)obs.observe(nav,{childList:true});
-              addEditorButton();
-            }
-            if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
-          })();
-          </script>'''
-          if '🎨 ویرایش مستقیم سایت' not in s:
-              s=s.replace('</body>',bridge+'\n</body>') if '</body>' in s else s+'\n'+bridge
+          marker='🎨 ویرایش مستقیم سایت'
+          if marker in s:
+              s=s.replace("b.dataset.tab='site-editor'; b.innerHTML=", "b.innerHTML=")
+              s=s.replace("const nav=document.querySelector('#adminModal .admin-nav');\n              if(!nav || nav.querySelector('[data-tab=\"site-editor\"]'))return;", "const nav=document.querySelector('#adminModal .admin-nav');\n              if(!nav || nav.querySelector('.central-site-editor'))return;")
+              s=s.replace("b.type='button'; b.innerHTML='🎨 ویرایش مستقیم سایت';", "b.type='button'; b.className='central-site-editor'; b.innerHTML='🎨 ویرایش مستقیم سایت';")
               p.write_text(s,encoding='utf-8')
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add ziayi-automation-v8.html
           git diff --cached --quiet && exit 0
-          git commit -m '[central-cms] Add visible site editor'
+          git commit -m '[central-cms] Fix direct editor button routing'
           git push
